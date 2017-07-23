@@ -1,22 +1,18 @@
-import { Entity, Field } from 'sls-api-decorators/lib/models';
-import * as Debug from 'debug'
-const $log = console.log;
+import { entity, field } from 'sls-api-decorators/models';
 
-@Entity({
+@entity({
   table: 'Users',
-  storage: 'DynamoDB'
+  storage: 'DynamoDB',
 })
 export class User {
-
-  @Field()
+  @field()
   public id: string;
 
-  @Field()
+  @field()
   public name: string;
 
-  @Field()
+  @field()
   public email: string;
-
 
   constructor() { }
 }

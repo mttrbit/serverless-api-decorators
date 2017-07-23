@@ -1,35 +1,52 @@
-import  * as Debug  from "debug";
-import {Endpoint, Lambda} from "sls-api-decorators/lib/decorators";
+import * as Debug from "debug";
+import { endpoint, lambda } from "sls-api-decorators/decorators";
 // import { Factory } from 'sls-api-decorators/lib/models';
 // import { User } from './user.model';
 
 const debug = Debug('bazooka');
 
-@Endpoint({
+@endpoint({
   name: 'userService',
   path: 'users',
-  xOrigin: true
+  xOrigin: true,
 })
 class UserService {
-
 
   // @Factory()
   // private User: User;
 
-
   constructor() {
-
     debug('Initing UserService');
     // debug('User Factory', this.User);
-
-
   }
 
-  @Lambda({
+  @lambda({
+    // name to reference this method in the serverless ecosystem
+    // i.e.: to be used with invoke command
+    name: 'hello',
+    // sub-path for this endpoint
+    // i.e.: http://localhost:8000/users/
+    path: '/',
+    // method to which this function should listen
+    // i.e.: 'get' or ['get', 'post'] [TBD]
+    method: 'get',
+    // this is just required from serverless-webpack plugin
+    integration: 'lambda',
+  })
+  public welcome(event) {
+    debug('Running welcome');
+
+    return {
+      event,
+      message: 'Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!',
+    };
+  }
+
+  @lambda({
     name: 'list',
     path: '/',
     method: 'get',
-    integration: 'lambda'
+    integration: 'lambda',
   })
   public list(event, offset, limit) {
     debug('Running welcome');
@@ -37,16 +54,15 @@ class UserService {
     return [{
       name: 'davide cavaliere',
       email: 'cavaliere.davide@gmail.com',
-      provider: 'googleplus'
+      provider: 'googleplus',
     }];
-
   }
 
-  @Lambda({
+  @lambda({
     name: 'getById',
     path: '/{id}',
     method: 'get',
-    integration: 'lambda'
+    integration: 'lambda',
   })
   public getById(id) {
     debug('Running get by id:', id);
@@ -54,30 +70,27 @@ class UserService {
     return {
       id: 'abc',
       name: 'dcavaliere',
-      email: 'cavaliere.davide@gmail.com'
-     };
+      email: 'cavaliere.davide@gmail.com',
+    };
 
   }
 
-  @Lambda({
+  @lambda({
     name: 'getSubscriptions',
     path: '/{id}/subscriptions',
     method: 'get',
-    integration: 'lambda'
+    integration: 'lambda',
   })
   public getSubscriptions(id) {
     debug('Running get by id:', id);
-
     return ['Playboy', 'Penthouse'];
-
   }
 
-
-  @Lambda({
+  @lambda({
     name: 'error',
     path: 'error',
     method: 'get',
-    integration: 'lambda'
+    integration: 'lambda',
   })
   public error(event) {
     debug('throwing an error');

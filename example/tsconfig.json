@@ -1,12 +1,19 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+   "target": "es5",
     "module": "commonjs",
+    "alwaysStrict": true,
+    "sourceMap": true,
+    "noUnusedLocals": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "sourceMap": true,
     "declaration": true,
-    "outDir": "lib"
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "rootDir": "./",
+    "outDir": "lib",
+    "preserveConstEnums": true,
+    "removeComments": true
   },
   "exclude": [
     "api/user",

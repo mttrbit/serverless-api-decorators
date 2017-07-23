@@ -1,29 +1,24 @@
-import  * as Debug  from "debug";
-import {Endpoint, Lambda} from "sls-api-decorators/lib/decorators";
+import * as Debug from 'debug';
+import { endpoint, lambda } from 'sls-api-decorators/decorators';
 
 const debug = Debug('stories-service');
 
-@Endpoint({
+@endpoint({
   name: 'storyService',
   path: 'stories',
-  xOrigin: true
+  xOrigin: true,
 })
 class StoryService {
-
-
   constructor() {
-
     debug('Initing StoryService');
     // debug('User Factory', this.User);
-
-
   }
 
-  @Lambda({
+  @lambda({
     name: 'list',
     path: '/',
     method: 'get',
-    integration: 'lambda'
+    integration: 'lambda',
   })
   public list(event, offset, limit) {
     debug('Running welcome');
@@ -31,16 +26,15 @@ class StoryService {
     return [{
       id: 1,
       title: 'Il nome della rosa',
-      author: 'Umberto Eco'
+      author: 'Umberto Eco',
     }];
-
   }
 
-  @Lambda({
+  @lambda({
     name: 'getById',
     path: '/{id}',
     method: 'get',
-    integration: 'lambda'
+    integration: 'lambda',
   })
   public getById(id) {
     debug('Running get by id:', id);
@@ -48,30 +42,26 @@ class StoryService {
     return {
       id: 1,
       title: 'Il nome della rosa',
-      author: 'Umberto Eco'
+      author: 'Umberto Eco',
     };
-
   }
 
-  @Lambda({
+  @lambda({
     name: 'getSubscriptions',
     path: '/{id}/subscriptions',
     method: 'get',
-    integration: 'lambda'
+    integration: 'lambda',
   })
   public getSubscriptions(id) {
     debug('Running get by id:', id);
-
     return ['Playboy', 'Penthouse'];
-
   }
 
-
-  @Lambda({
+  @lambda({
     name: 'error',
     path: 'error',
     method: 'get',
-    integration: 'lambda'
+    integration: 'lambda',
   })
   public error(event) {
     debug('throwing an error');

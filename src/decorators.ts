@@ -1,86 +1,75 @@
 import * as Debug from 'debug';
+import { Promise } from 'es6-promise';
 import { registerSingleton } from './di';
 
 const debug = Debug('annotations');
 
-export const EndpointSymbol = '__service__';
-export const LambdaSymbol = '__endpoints__';
-
+export const ENDPOINT_SYMBOL = '__service__';
+export const LAMBDA_SYMBOL = '__endpoints__';
 
 export interface ServiceConfiguration {
   name: string;
   path: string;
   xOrigin: boolean;
 }
-;
 
-export const Endpoint = (config: Object) => {
-
-
+export const endpoint = (config: object) => {
   debug('Creating class annotation');
   return (target: any) => {
     debug('Running class annotation');
 
-    target.prototype[EndpointSymbol] = config;
+    target.prototype[ENDPOINT_SYMBOL] = config;
 
-    debug('conf injected', target.prototype[EndpointSymbol]);
-
+    debug('conf injected', target.prototype[ENDPOINT_SYMBOL]);
 
     registerSingleton(target);
-
   };
-}
+};
 
-
-export const Lambda = (config: Object) => {
+export const lambda = (config: object) => {
   debug('Creating function annotatiion');
   debug(config);
 
-  return function (target: any, key: string, descriptor: PropertyDescriptor) {
+  return (target: any, key: string, descriptor: PropertyDescriptor) => {
     // let functName = target;
 
     debug('function name:', key);
-
     debug('Running function annotation');
     debug('-----------------parent proto------------');
     debug(Object.getOwnPropertyNames(target.constructor.prototype));
 
     const targetProto = target.constructor.prototype;
 
-    if (!targetProto[LambdaSymbol]) {
-      targetProto[LambdaSymbol] = [];
+    if (!targetProto[LAMBDA_SYMBOL]) {
+      targetProto[LAMBDA_SYMBOL] = [];
     }
 
     // setting real function name
-    (config as any)['functionName'] = key
+    const functionSymbol = 'functionName';
+    (config as any)[functionSymbol] = key;
 
-    target.constructor.prototype[LambdaSymbol].push(config);
+    target.constructor.prototype[LAMBDA_SYMBOL].push(config);
 
     debug('endpoint defined', target.constructor.prototype);
 
-
-
-
     const originalFunction = target[key];
-
 
     return target[key] = (...args: any[]) => {
       debug('hijacked function');
       debug('original function:', originalFunction);
-      let _args = annotate(originalFunction);
-      debug('function arguments', _args);
-
+      const originalArgs = annotate(originalFunction);
+      debug('function arguments', originalArgs);
 
       debug('event', args[0]);
       const event = args[0];
       debug('context', args[1]);
-      debug('cb', args[2])
+      debug('cb', args[2]);
       const cb = args[2];
       // function should only handle the event and resolve, reject of a promise
       const promise = new Promise((resolve, reject) => {
         debug('promising sanitation');
         try {
-          let newArgs = _args.map((arg: any) => {
+          const newArgs = originalArgs.map((arg: any) => {
             debug('parsing arg for injection:', arg);
             if (arg === 'event') {
               return event;
@@ -108,25 +97,24 @@ export const Lambda = (config: Object) => {
           // TODO: need to get enviroment info
 
           // reject(e);
-          resolve({message: e.toString()});
+          resolve({ message: e.toString() });
         }
       });
 
-
-      promise.then((response) => {
+      promise.then((response: any) => {
         debug('handling response', response);
         cb(null, response);
       });
 
-      promise.catch((err) => {
+      promise.catch((err: any) => {
         debug('promise cought error', err);
         // same as comment above
         // cb(err);
         cb(null, err);
-      })
-    }
-  }
-}
+      });
+    };
+  };
+};
 
 const FN_ARGS = /^[a-zA_Z]\s*[^\(]*\(\s*([^\)]*)\)/m;
 const FN_ARG_SPLIT = /,/;
@@ -136,18 +124,18 @@ function annotate(fn: any) {
   const $inject: string[] = [];
   let fnText;
   let argDecl;
-  let last;
+  // let last;
 
   debug('extracting arguments from fn:', fn);
 
-  if (typeof fn == 'function') {
+  if (typeof fn === 'function') {
     debug('function is a function!');
     fnText = fn.toString().replace(STRIP_COMMENTS, '');
     debug('fnText', fnText);
     argDecl = fnText.match(FN_ARGS);
     debug('argDecl', argDecl);
-    argDecl[1].split(FN_ARG_SPLIT).forEach(function(arg: any){
-      arg.replace(FN_ARG, function(all: any, underscore: any, name: any){
+    argDecl[1].split(FN_ARG_SPLIT).forEach((arg: any) => {
+      arg.replace(FN_ARG, (all: any, underscore: any, name: any) => {
         $inject.push(name);
       });
     });

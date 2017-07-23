@@ -1,18 +1,17 @@
-import { Api } from 'sls-api-decorators/lib/application';
+import { api } from 'sls-api-decorators/application';
 import { UserService } from './user/user.service';
 import { StoryService } from './story/story.service';
 import { User } from './user/user.model';
 
-import  * as Debug  from 'debug';
-let debug = Debug('app');
+import * as Debug from 'debug';
+const debug = Debug('app');
 
-
-@Api({
+@api({
   // used for DI purposes
-  name : 'app',
+  name: 'app',
   // need to define factories and servises
   factories: [User],
-  services: [UserService, StoryService]
+  services: [UserService, StoryService],
 })
 export class App {
 
@@ -22,5 +21,4 @@ export class App {
   constructor() {
     debug('------------------initing api class------------------------');
   }
-
 }

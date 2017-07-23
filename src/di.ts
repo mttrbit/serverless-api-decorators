@@ -2,7 +2,7 @@ import * as Debug from 'debug';
 
 const d = Debug('DI');
 
-const singletons: Object = {};
+const singletons: object = {};
 
 export const registerSingleton = (target: any) => {
   d('registering singleton:', target);
@@ -10,7 +10,8 @@ export const registerSingleton = (target: any) => {
   const className = target.name;
   d('classname: ', className);
 
-  const serviceName = target.prototype['__service__'].name;
+  const serviceSymbol = '__service__';
+  const serviceName = target.prototype[serviceSymbol].name;
 
   d('serviceName: ', serviceName);
 
@@ -18,7 +19,7 @@ export const registerSingleton = (target: any) => {
   (singletons as any)[serviceName] = new target();
 
   d('singletons', singletons);
-}
+};
 
 export const getSingleton = (name: string) => {
 
@@ -26,11 +27,11 @@ export const getSingleton = (name: string) => {
 
   return (singletons as any)[name];
 
-}
+};
 
 export const getServices = () => {
   return singletons;
-}
+};
 
 // export class DIManager {
 //

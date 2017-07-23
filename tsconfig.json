@@ -1,17 +1,24 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "es5",
     "module": "commonjs",
+    "alwaysStrict": true,
+    "sourceMap": true,
+    "noUnusedLocals": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "declaration": true,
     "moduleResolution": "node",
-    "noImplicitAny": true,
+    "noImplicitAny": false,
     "outDir": "./lib",
     "preserveConstEnums": true,
     "removeComments": true,
     "typeRoots": [
       "./node_modules/@types"
+    ],
+    "lib": [
+      "es2015",
+      "es2016.array.include"
     ],
     "types": ["node"]
   },

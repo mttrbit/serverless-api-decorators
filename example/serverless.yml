@@ -20,6 +20,8 @@ service: sls-api-decorators-example-2 # NOTE: update this with your service name
 provider:
   name: aws
   runtime: nodejs6.10
+  stage: cons
+  region: eu-central-1
 
 
 plugins:
