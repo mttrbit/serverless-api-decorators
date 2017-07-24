@@ -13,7 +13,7 @@ const d = Debug('test');
 
 @lambdaService({
   name: 'test',
-  path: '/',
+  path: '/test',
 })
 class TestService {
   constructor() {
@@ -21,7 +21,9 @@ class TestService {
   }
 
   @lambdaFunction({
-    test: 'test',
+    name: 'test',
+    path: '/',
+    method: 'get',
   })
   public testMethod() {
     d('running testMethod', this);
@@ -44,7 +46,12 @@ describe('decorators', () => {
 
     expect(serviceDef).to.be.eql({ test: 'test' }, 'should match provided config');
 
-    expect(endpointsDef).to.be.eql([{ functionName: 'testMethod', test: 'test' }]);
+    expect(endpointsDef).to.be.eql([{
+      functionName: 'testMethod',
+      integration: 'lambda',
+      method: 'get',
+      path: '/',
+    }]);
 
   });
 });

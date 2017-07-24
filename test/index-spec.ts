@@ -4,19 +4,20 @@ import 'mocha';
 
 import * as Debug from 'debug';
 import {
-  endpoint,
-  lambda,
+  lambdaService,
+  lambdaFunction,
   ENDPOINT_SYMBOL,
-  LAMBDA_SYMBOL
-} from '../src/decorators';
+  LAMBDA_SYMBOL,
+} from '../src/decorators/lambda';
 
 import * as DI from '../src/di';
 
 const d = Debug('test');
 
 
-@endpoint({
-  name: 'testService'
+@lambdaService({
+  name: 'testService',
+  path: 'test',
 })
 class TestService {
 
@@ -28,10 +29,20 @@ class TestService {
     d('number of instances', TestService.count);
   }
 
-  @lambda({
-    test: 'test'
+  @lambdaFunction({
+    name: 'test',
+    path: '/',
+    method: 'get',
   })
   public testMethod() {
+    d('running testMethod', this);
+  }
+
+  @lambdaFunction({
+    path: '/',
+    method: 'get',
+  })
+  public getInfo() {
     d('running testMethod', this);
   }
 }
@@ -42,19 +53,32 @@ const expect = chai.expect;
 
 describe('index', () => {
   it('should provide Greeter', () => {
-
     d('DI:', DI);
 
-
-
     const service = DI.getSingleton('testService');
-
     const serviceDef = (service as any)[ENDPOINT_SYMBOL];
     const endpointsDef = (service as any)[LAMBDA_SYMBOL];
 
-    expect(serviceDef).to.be.eql({ name: 'testService' }, 'should match provided config');
+    expect(serviceDef).to.be.eql({
+      name: 'testService',
+      path: 'test'
+    }, 'should match provided config');
 
-    expect(endpointsDef).to.be.eql([{ functionName: 'testMethod', test: 'test' }]);
-
+    expect(endpointsDef).to.be.eql([
+      {
+        functionName: 'testMethod',
+        integration: 'lambda',
+        method: 'get',
+        name: 'test',
+        path: '/',
+      },
+      {
+        functionName: 'getInfo',
+        integration: 'lambda',
+        method: 'get',
+        name: 'getInfo',
+        path: '/',
+      },
+    ]);
   });
 });

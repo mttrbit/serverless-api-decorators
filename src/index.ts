@@ -79,15 +79,14 @@ const app = new App();
         for (const endpoint of endpoints) {
           // debug('registering endpoint', endpoint);
           // const name = endpoint.name;
-          const funcName = endpoint.functionName;
 
-          const varName = `${serviceDescription.name}_${funcName}`;
-          const value = `app.services.${serviceDescription.name}.${funcName}`;
+          const varName = `${serviceDescription.name}_${endpoint.name}`;
+          const value = `app.services.${serviceDescription.name}.${endpoint.functionName}`;
           handlerjs += `
 export const ${varName} = ${value};
 `;
 
-          functions[`${serviceDescription.name}_${funcName}`] = {
+          functions[`${serviceDescription.name}_${endpoint.name}`] = {
             events: [
               {
                 http: {
@@ -97,7 +96,7 @@ export const ${varName} = ${value};
                 },
               },
             ],
-            handler: `lib/handler.${serviceDescription.name}_${funcName}`,
+            handler: `lib/handler.${serviceDescription.name}_${endpoint.name}`,
           };
         }
       }

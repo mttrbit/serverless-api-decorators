@@ -17,3 +17,4 @@ export const api = (config) => {
     // instantiate Factories and Services
   };
 };
+

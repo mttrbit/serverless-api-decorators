@@ -1,10 +1,15 @@
 import * as Debug from 'debug';
 import { Promise } from 'es6-promise';
 import { LAMBDA_SYMBOL } from './symbols';
+import { LambdaConfig } from './types';
+import {
+  DefaultLambdaFunctionNameResolver as FunctionNameResolver,
+  DefaultLambdaFunctionIntegrationResolver as FunctionIntegrationResolver,
+} from './resolver';
 
 const debug = Debug('annotations');
 
-export const lambdaFunction = (config: object) => {
+export const lambdaFunction = (config: LambdaConfig) => {
   debug('Creating function annotatiion');
   debug(config);
 
@@ -26,6 +31,8 @@ export const lambdaFunction = (config: object) => {
     const functionSymbol = 'functionName';
     (config as any)[functionSymbol] = key;
 
+    config.name = new FunctionNameResolver().getFunctionName(key, config);
+    config.integration = new FunctionIntegrationResolver().getFunctionIntegration(config);
     target.constructor.prototype[LAMBDA_SYMBOL].push(config);
 
     debug('endpoint defined', target.constructor.prototype);
