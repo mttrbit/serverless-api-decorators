@@ -27,31 +27,59 @@ class TestService {
   })
   public testMethod() {
     d('running testMethod', this);
+
+    return 'abc';
   }
 }
-
-
 
 const expect = chai.expect;
 
 describe('decorators', () => {
-  it('should inject configuration into instance', () => {
-
-
-    // d('serverless plugin', index);
+  it('test function', (done) => {
     const service = new TestService();
 
+    new Promise((resolve, reject) => {
+      (service as any)['testMethod']
+        .apply('testMethod', [
+          {},
+          {},
+          (err, resp) => {
+            if (err) reject(err);
+            else resolve(resp);
+          },
+        ]);
+    })
+      .then((resp) => {
+        expect(resp).to.be.eql('abc');
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  it('should inject configuration into instance', () => {
+    const service = new TestService();
     const serviceDef = (service as any)[ENDPOINT_SYMBOL];
     const endpointsDef = (service as any)[LAMBDA_SYMBOL];
 
-    expect(serviceDef).to.be.eql({ test: 'test' }, 'should match provided config');
+    expect(serviceDef).to.be.eql(
+      {
+        name: 'test',
+        path: '/test',
+      },
+      'should match provided config');
 
-    expect(endpointsDef).to.be.eql([{
-      functionName: 'testMethod',
-      integration: 'lambda',
-      method: 'get',
-      path: '/',
-    }]);
-
+    expect(endpointsDef).to.be.eql(
+      [
+        {
+          functionName: 'testMethod',
+          integration: 'lambda',
+          method: 'get',
+          name: 'test',
+          path: '/',
+        },
+      ],
+    );
   });
 });

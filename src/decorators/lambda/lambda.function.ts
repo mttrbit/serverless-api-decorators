@@ -4,18 +4,28 @@ import { LAMBDA_SYMBOL } from './symbols';
 import { LambdaConfig } from './types';
 import {
   DefaultLambdaFunctionNameResolver as FunctionNameResolver,
-  DefaultLambdaFunctionIntegrationResolver as FunctionIntegrationResolver,
 } from './resolver';
 
 const debug = Debug('annotations');
 
+const extractArgs = event =>
+  (arg: any) => {
+    debug('parsing arg for injection:', arg);
+    if (arg === 'event') return event;
+
+    if (event && event.path && event.path.hasOwnProperty(arg)) return event.path[arg];
+
+    return undefined;
+  };
+
 export const lambdaFunction = (config: LambdaConfig) => {
-  debug('Creating function annotatiion');
+  debug('Creating function annotatition');
+
+  config.integration = config.integration || 'lambda';
+
   debug(config);
 
   return (target: any, key: string, descriptor: PropertyDescriptor) => {
-    // let functName = target;
-
     debug('function name:', key);
     debug('Running function annotation');
     debug('-----------------parent proto------------');
@@ -23,52 +33,36 @@ export const lambdaFunction = (config: LambdaConfig) => {
 
     const targetProto = target.constructor.prototype;
 
-    if (!targetProto[LAMBDA_SYMBOL]) {
-      targetProto[LAMBDA_SYMBOL] = [];
-    }
+    if (!targetProto[LAMBDA_SYMBOL]) targetProto[LAMBDA_SYMBOL] = [];
 
     // setting real function name
     const functionSymbol = 'functionName';
     (config as any)[functionSymbol] = key;
 
     config.name = new FunctionNameResolver().getFunctionName(key, config);
-    config.integration = new FunctionIntegrationResolver().getFunctionIntegration(config);
     target.constructor.prototype[LAMBDA_SYMBOL].push(config);
 
     debug('endpoint defined', target.constructor.prototype);
 
-    const originalFunction = target[key];
+    // the annotated/targeted function
+    const targetFunction = target[key];
 
-    return target[key] = (...args: any[]) => {
+    return target[key] = (event, context, callback) => {
       debug('hijacked function');
-      debug('original function:', originalFunction);
-      const originalArgs = annotate(originalFunction);
-      debug('function arguments', originalArgs);
+      debug('original function:', targetFunction);
+      const targetArgs = annotate(targetFunction);
+      debug('function arguments', targetArgs);
 
-      debug('event', args[0]);
-      const event = args[0];
-      debug('context', args[1]);
-      debug('cb', args[2]);
-      const cb = args[2];
+      debug('event', event);
+      debug('context', context);
+      debug('callback', callback);
       // function should only handle the event and resolve, reject of a promise
       const promise = new Promise((resolve, reject) => {
         debug('promising sanitation');
         try {
-          const newArgs = originalArgs.map((arg: any) => {
-            debug('parsing arg for injection:', arg);
-            if (arg === 'event') {
-              return event;
-            }
-            if (event && event.path && event.path.hasOwnProperty(arg)) {
-              return event.path[arg];
-            }
-
-            return undefined;
-          });
-
-          debug('new arguments:', newArgs);
-
-          const response = originalFunction.apply(target, newArgs);
+          const args = targetArgs.map(extractArgs(event));
+          debug('new arguments:', args);
+          const response = targetFunction.apply(target, args);
           resolve(response);
         } catch (e) {
           debug('error calling handler', e.toString());
@@ -88,14 +82,14 @@ export const lambdaFunction = (config: LambdaConfig) => {
 
       promise.then((response: any) => {
         debug('handling response', response);
-        cb(null, response);
+        callback(null, response);
       });
 
       promise.catch((err: any) => {
         debug('promise cought error', err);
         // same as comment above
         // cb(err);
-        cb(null, err);
+        callback(null, err);
       });
     };
   };
