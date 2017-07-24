@@ -1,5 +1,5 @@
 import * as Debug from 'debug';
-import * as DI from './di';
+import * as DI from '../../di';
 
 const d = Debug('@Api');
 

@@ -3,9 +3,10 @@ import { Promise } from 'es6-promise';
 import * as path from 'path';
 import tsSimpleAst from 'ts-simple-ast';
 import * as ts from 'typescript';
-
-import { ENDPOINT_SYMBOL, LAMBDA_SYMBOL } from './decorators';
-// import * as fs from 'fs';
+import {
+  ENDPOINT_SYMBOL,
+  LAMBDA_SYMBOL,
+} from './decorators/lambda';
 
 const debug = Debug('sls-plugin');
 

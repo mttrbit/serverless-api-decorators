@@ -1,32 +1,10 @@
 import * as Debug from 'debug';
 import { Promise } from 'es6-promise';
-import { registerSingleton } from './di';
+import { LAMBDA_SYMBOL } from './symbols';
 
 const debug = Debug('annotations');
 
-export const ENDPOINT_SYMBOL = '__service__';
-export const LAMBDA_SYMBOL = '__endpoints__';
-
-export interface ServiceConfiguration {
-  name: string;
-  path: string;
-  xOrigin: boolean;
-}
-
-export const endpoint = (config: object) => {
-  debug('Creating class annotation');
-  return (target: any) => {
-    debug('Running class annotation');
-
-    target.prototype[ENDPOINT_SYMBOL] = config;
-
-    debug('conf injected', target.prototype[ENDPOINT_SYMBOL]);
-
-    registerSingleton(target);
-  };
-};
-
-export const lambda = (config: object) => {
+export const lambdaFunction = (config: object) => {
   debug('Creating function annotatiion');
   debug(config);
 

@@ -1,11 +1,12 @@
 import * as Debug from "debug";
-import { endpoint, lambda } from "sls-api-decorators/decorators";
-// import { Factory } from 'sls-api-decorators/lib/models';
-// import { User } from './user.model';
+import {
+  lambdaService,
+  lambdaFunction,
+} from "sls-api-decorators/decorators/lambda";
 
 const debug = Debug('bazooka');
 
-@endpoint({
+@lambdaService({
   name: 'userService',
   path: 'users',
   xOrigin: true,
@@ -20,7 +21,7 @@ class UserService {
     // debug('User Factory', this.User);
   }
 
-  @lambda({
+  @lambdaFunction({
     // name to reference this method in the serverless ecosystem
     // i.e.: to be used with invoke command
     name: 'hello',
@@ -42,7 +43,7 @@ class UserService {
     };
   }
 
-  @lambda({
+  @lambdaFunction({
     name: 'list',
     path: '/',
     method: 'get',
@@ -58,7 +59,7 @@ class UserService {
     }];
   }
 
-  @lambda({
+  @lambdaFunction({
     name: 'getById',
     path: '/{id}',
     method: 'get',
@@ -75,7 +76,7 @@ class UserService {
 
   }
 
-  @lambda({
+  @lambdaFunction({
     name: 'getSubscriptions',
     path: '/{id}/subscriptions',
     method: 'get',
@@ -86,7 +87,7 @@ class UserService {
     return ['Playboy', 'Penthouse'];
   }
 
-  @lambda({
+  @lambdaFunction({
     name: 'error',
     path: 'error',
     method: 'get',

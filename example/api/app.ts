@@ -1,4 +1,4 @@
-import { api } from 'sls-api-decorators/application';
+import { api } from 'sls-api-decorators/decorators/lambda';
 import { UserService } from './user/user.service';
 import { StoryService } from './story/story.service';
 import { User } from './user/user.model';

@@ -1,27 +1,27 @@
-// import index = require('../src/index');
 import * as chai from 'chai';
 import 'mocha';
 import * as Debug from 'debug';
 import {
-  endpoint,
-  lambda,
+  lambdaService,
+  lambdaFunction,
   ENDPOINT_SYMBOL,
-  LAMBDA_SYMBOL
-} from '../src/decorators';
+  LAMBDA_SYMBOL,
+} from './index';
 
 
 const d = Debug('test');
 
-@endpoint({
-  test: 'test'
+@lambdaService({
+  name: 'test',
+  path: '/',
 })
 class TestService {
   constructor() {
     // d('initing test service')
   }
 
-  @lambda({
-    test: 'test'
+  @lambdaFunction({
+    test: 'test',
   })
   public testMethod() {
     d('running testMethod', this);

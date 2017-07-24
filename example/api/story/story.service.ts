@@ -1,9 +1,12 @@
 import * as Debug from 'debug';
-import { endpoint, lambda } from 'sls-api-decorators/decorators';
+import {
+  lambdaService,
+  lambdaFunction,
+} from "sls-api-decorators/decorators/lambda";
 
 const debug = Debug('stories-service');
 
-@endpoint({
+@lambdaService({
   name: 'storyService',
   path: 'stories',
   xOrigin: true,
@@ -14,7 +17,7 @@ class StoryService {
     // debug('User Factory', this.User);
   }
 
-  @lambda({
+  @lambdaFunction({
     name: 'list',
     path: '/',
     method: 'get',
@@ -30,7 +33,7 @@ class StoryService {
     }];
   }
 
-  @lambda({
+  @lambdaFunction({
     name: 'getById',
     path: '/{id}',
     method: 'get',
@@ -46,7 +49,7 @@ class StoryService {
     };
   }
 
-  @lambda({
+  @lambdaFunction({
     name: 'getSubscriptions',
     path: '/{id}/subscriptions',
     method: 'get',
@@ -57,7 +60,7 @@ class StoryService {
     return ['Playboy', 'Penthouse'];
   }
 
-  @lambda({
+  @lambdaFunction({
     name: 'error',
     path: 'error',
     method: 'get',
