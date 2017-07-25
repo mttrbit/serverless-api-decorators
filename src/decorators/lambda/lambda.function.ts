@@ -8,14 +8,20 @@ import {
 
 const debug = Debug('annotations');
 
+const getPathParam = (event, arg) => {
+  const pathParamExists = event &&
+    event.path &&
+    event.path.hasOwnProperty(arg);
+
+  return (pathParamExists) ? event.path[arg] : undefined;
+};
+
 const extractArgs = event =>
   (arg: any) => {
     debug('parsing arg for injection:', arg);
     if (arg === 'event') return event;
 
-    if (event && event.path && event.path.hasOwnProperty(arg)) return event.path[arg];
-
-    return undefined;
+    return getPathParam(event, arg);
   };
 
 export const lambdaFunction = (config: LambdaConfig) => {

@@ -34,21 +34,24 @@ class TestService {
 
 const expect = chai.expect;
 
+
+const promisify = (service: object, functionName: string, event, context) =>
+  new Promise((resolve, reject) => {
+    (service as any)[functionName]
+      .apply(functionName, [
+        {},
+        {},
+        (err, resp) => {
+          if (err) reject(err);
+          else resolve(resp);
+        },
+      ]);
+  });
+
+
 describe('decorators', () => {
   it('test function', (done) => {
-    const service = new TestService();
-
-    new Promise((resolve, reject) => {
-      (service as any)['testMethod']
-        .apply('testMethod', [
-          {},
-          {},
-          (err, resp) => {
-            if (err) reject(err);
-            else resolve(resp);
-          },
-        ]);
-    })
+    promisify(new TestService(), 'testMethod', {}, {})
       .then((resp) => {
         expect(resp).to.be.eql('abc');
         done();
