@@ -1,12 +1,8 @@
 import * as Debug from 'debug';
-import { Promise } from 'es6-promise';
 import * as path from 'path';
 import tsSimpleAst from 'ts-simple-ast';
 import * as ts from 'typescript';
-import {
-  ENDPOINT_SYMBOL,
-  LAMBDA_SYMBOL,
-} from './decorators/lambda';
+import { ENDPOINT_SYMBOL, LAMBDA_SYMBOL } from './decorators/lambda';
 
 const debug = Debug('sls-plugin');
 
@@ -26,6 +22,7 @@ class Serverless {
     this.hooks = {
       'before:package:initialize': () => {
         return new Promise((res: any, rej: any) => {
+          // prettier-ignore
           setTimeout(
             () => {
               debug('This runs before packaging');
@@ -81,7 +78,9 @@ const app = new App();
           // const name = endpoint.name;
 
           const varName = `${serviceDescription.name}_${endpoint.name}`;
-          const value = `app.services.${serviceDescription.name}.${endpoint.functionName}`;
+          const value = `app.services.${serviceDescription.name}.${
+            endpoint.functionName
+            }`;
           handlerjs += `
 export const ${varName} = ${value};
 `;
@@ -101,7 +100,10 @@ export const ${varName} = ${value};
         }
       }
 
-      const sourceFile = ast.addSourceFileFromText(path.join(servicePath, 'handler.ts'), handlerjs);
+      const sourceFile = ast.createSourceFile(
+        path.join(servicePath, 'handler.ts'),
+        handlerjs,
+      );
 
       sourceFile.saveSync();
       debug('handler.ts saved');

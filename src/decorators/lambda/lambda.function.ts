@@ -1,28 +1,24 @@
 import * as Debug from 'debug';
-import { Promise } from 'es6-promise';
 import { LAMBDA_SYMBOL } from './symbols';
 import { LambdaConfig } from './types';
-import {
-  DefaultLambdaFunctionNameResolver as FunctionNameResolver,
-} from './resolver';
+import { DefaultLambdaFunctionNameResolver as FunctionNameResolver } from './resolver';
 
 const debug = Debug('annotations');
 
 const getPathParam = (event, arg) => {
-  const pathParamExists = event &&
-    event.path &&
-    event.path.hasOwnProperty(arg);
+  const pathParamExists = event && event.path && event.path.hasOwnProperty(arg);
 
-  return (pathParamExists) ? event.path[arg] : undefined;
+  return pathParamExists ? event.path[arg] : undefined;
 };
 
-const extractArgs = event =>
-  (arg: any) => {
+const extractArgs = (event) => {
+  return (arg: any) => {
     debug('parsing arg for injection:', arg);
     if (arg === 'event') return event;
 
     return getPathParam(event, arg);
   };
+};
 
 export const lambdaFunction = (config: LambdaConfig) => {
   debug('Creating function annotatition');
@@ -53,7 +49,10 @@ export const lambdaFunction = (config: LambdaConfig) => {
     // the annotated/targeted function
     const targetFunction = target[key];
 
-    return target[key] = (event, context, callback) => {
+    // see:
+    // https://stackoverflow.com/questions/36446480/
+    // typescript-decorator-reports-unable-to-resolve-signature-of-class-decorator-whe
+    return <any>(target[key] = (event, context, callback) => {
       debug('hijacked function');
       debug('original function:', targetFunction);
       const targetArgs = annotate(targetFunction);
@@ -97,14 +96,14 @@ export const lambdaFunction = (config: LambdaConfig) => {
         // cb(err);
         callback(null, err);
       });
-    };
+    });
   };
 };
 
 const FN_ARGS = /^[a-zA_Z]\s*[^\(]*\(\s*([^\)]*)\)/m;
 const FN_ARG_SPLIT = /,/;
 const FN_ARG = /^\s*(_?)(.+?)\1\s*$/;
-const STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/mg;
+const STRIP_COMMENTS = /((\/\/.*$)|(\/\*[\s\S]*?\*\/))/gm;
 function annotate(fn: any) {
   const $inject: string[] = [];
   let fnText;
@@ -124,7 +123,6 @@ function annotate(fn: any) {
         $inject.push(name);
       });
     });
-
   } else if (false) {
     // last = fn.length - 1;
     // assertArgFn(fn[last], 'fn')

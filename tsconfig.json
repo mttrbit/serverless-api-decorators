@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es6",
     "module": "commonjs",
     "alwaysStrict": true,
+    "rootDir": ".",
     "sourceMap": true,
     "noUnusedLocals": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "declaration": true,
-    "moduleResolution": "node",
     "noImplicitAny": false,
     "outDir": "./lib",
     "preserveConstEnums": true,
@@ -16,11 +16,16 @@
     "typeRoots": [
       "./node_modules/@types"
     ],
+    "types": [
+      "chai",
+      "debug",
+      "mocha",
+      "node"
+    ],
     "lib": [
       "es2015",
       "es2016.array.include"
-    ],
-    "types": ["node"]
+    ]
   },
   "include": [
     "src/**/*"

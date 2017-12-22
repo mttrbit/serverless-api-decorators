@@ -14,10 +14,6 @@
   version "0.0.29"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/@types/debug/-/debug-0.0.29.tgz#a1e514adfbd92f03a224ba54d693111dbf1f3754"
 
-"@types/es6-promise@^0.0.32":
-  version "0.0.32"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/@types/es6-promise/-/es6-promise-0.0.32.tgz#3bcf44fb1e429f3df76188c8c6d874463ba371fd"
-
 "@types/mocha@^2.2.41":
   version "2.2.41"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/@types/mocha/-/mocha-2.2.41.tgz#e27cf0817153eb9f2713b2d3f6c68f1e1c3ca608"
@@ -25,6 +21,14 @@
 "@types/node@^7.0.0":
   version "7.0.39"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/@types/node/-/node-7.0.39.tgz#8aced4196387038113f6f9aa4014ab4c51edab3c"
+
+"@types/strip-bom@^3.0.0":
+  version "3.0.0"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/@types/strip-bom/-/strip-bom-3.0.0.tgz#14a8ec3956c2e81edb7520790aecf21c290aebd2"
+
+"@types/strip-json-comments@0.0.30":
+  version "0.0.30"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/@types/strip-json-comments/-/strip-json-comments-0.0.30.tgz#9aa30c04db212a9a0649d6ae6fd50accc40748a1"
 
 JSONStream@^1.0.4:
   version "1.3.1"
@@ -43,13 +47,6 @@ agent-base@2:
   dependencies:
     extend "~3.0.0"
     semver "~5.0.1"
-
-ajv@^4.9.1:
-  version "4.11.8"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/ajv/-/ajv-4.11.8.tgz#82ffb02b29e662ae53bdc20af15947706739c536"
-  dependencies:
-    co "^4.6.0"
-    json-stable-stringify "^1.0.1"
 
 align-text@^0.1.1, align-text@^0.1.3:
   version "0.1.4"
@@ -95,33 +92,15 @@ any-promise@^1.0.0, any-promise@^1.1.0, any-promise@^1.3.0:
   version "1.3.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/any-promise/-/any-promise-1.3.0.tgz#abc6afeedcea52e809cdc0376aed3ce39635d17f"
 
-anymatch@^1.1.0, anymatch@^1.3.0:
-  version "1.3.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/anymatch/-/anymatch-1.3.0.tgz#a3e52fa39168c825ff57b0248126ce5a8ff95507"
-  dependencies:
-    arrify "^1.0.0"
-    micromatch "^2.1.5"
-
 append-transform@^0.4.0:
   version "0.4.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/append-transform/-/append-transform-0.4.0.tgz#d76ebf8ca94d276e247a36bad44a4b74ab611991"
   dependencies:
     default-require-extensions "^1.0.0"
 
-aproba@^1.0.3:
-  version "1.1.2"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/aproba/-/aproba-1.1.2.tgz#45c6629094de4e96f693ef7eab74ae079c240fc1"
-
 archy@^1.0.0:
   version "1.0.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/archy/-/archy-1.0.0.tgz#f9c8c13757cc1dd7bc379ac77b2c62a5c2868c40"
-
-are-we-there-yet@~1.1.2:
-  version "1.1.4"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/are-we-there-yet/-/are-we-there-yet-1.1.4.tgz#bb5dca382bb94f05e15194373d16fd3ba1ca110d"
-  dependencies:
-    delegates "^1.0.0"
-    readable-stream "^2.0.6"
 
 argparse@^1.0.7:
   version "1.0.9"
@@ -139,10 +118,6 @@ arr-flatten@^1.0.1:
   version "1.1.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/arr-flatten/-/arr-flatten-1.1.0.tgz#36048bbff4e7b47e136644316c99669ea5ae91f1"
 
-array-filter@~0.0.0:
-  version "0.0.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/array-filter/-/array-filter-0.0.1.tgz#7da8cf2e26628ed732803581fd21f67cacd2eeec"
-
 array-find-index@^1.0.1:
   version "1.0.2"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/array-find-index/-/array-find-index-1.0.2.tgz#df010aa1287e164bbda6f9723b0a96a1ec4187a1"
@@ -150,14 +125,6 @@ array-find-index@^1.0.1:
 array-ify@^1.0.0:
   version "1.0.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/array-ify/-/array-ify-1.0.0.tgz#9e528762b4a9066ad163a6962a364418e9626ece"
-
-array-map@~0.0.0:
-  version "0.0.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/array-map/-/array-map-0.0.0.tgz#88a2bab73d1cf7bcd5c1b118a003f66f665fa662"
-
-array-reduce@~0.0.0:
-  version "0.0.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/array-reduce/-/array-reduce-0.0.0.tgz#173899d3ffd1c7d9383e4479525dbe278cab5f2b"
 
 array-union@^1.0.1:
   version "1.0.2"
@@ -192,10 +159,6 @@ assert-plus@^0.2.0:
 assertion-error@^1.0.1:
   version "1.0.2"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/assertion-error/-/assertion-error-1.0.2.tgz#13ca515d86206da0bac66e834dd397d87581094c"
-
-async-each@^1.0.0:
-  version "1.0.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
 
 async@^1.4.0:
   version "1.5.2"
@@ -294,20 +257,6 @@ bcrypt-pbkdf@^1.0.0:
   dependencies:
     tweetnacl "^0.14.3"
 
-binary-extensions@^1.0.0:
-  version "1.9.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/binary-extensions/-/binary-extensions-1.9.0.tgz#66506c16ce6f4d6928a5b3cd6a33ca41e941e37b"
-
-block-stream@*:
-  version "0.0.9"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/block-stream/-/block-stream-0.0.9.tgz#13ebfe778a03205cfe03751481ebb4b3300c126a"
-  dependencies:
-    inherits "~2.0.0"
-
-bluebird@^2.9.24:
-  version "2.11.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/bluebird/-/bluebird-2.11.0.tgz#534b9033c022c9579c56ba3b3e5a5caafbb650e1"
-
 bluebird@^3.1.1:
   version "3.5.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/bluebird/-/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
@@ -349,7 +298,7 @@ browser-stdout@1.3.0:
   version "1.3.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/browser-stdout/-/browser-stdout-1.3.0.tgz#f351d32969d32fa5d7a5567154263d928ae3bd1f"
 
-builtin-modules@^1.0.0:
+builtin-modules@^1.0.0, builtin-modules@^1.1.1:
   version "1.1.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/builtin-modules/-/builtin-modules-1.1.1.tgz#270f076c5a72c02f5b65a47df94c5fe3a278892f"
 
@@ -372,7 +321,7 @@ camelcase@^1.0.2:
   version "1.2.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/camelcase/-/camelcase-1.2.1.tgz#9bb5304d2e0b56698b2c758b08a3eaa9daa58a39"
 
-camelcase@^2.0.0, camelcase@^2.0.1:
+camelcase@^2.0.0:
   version "2.1.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/camelcase/-/camelcase-2.1.1.tgz#7c1d16d679a1bbe59ca02cacecfb011e201f5a1f"
 
@@ -391,10 +340,6 @@ capture-stack-trace@^1.0.0:
 caseless@~0.11.0:
   version "0.11.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/caseless/-/caseless-0.11.0.tgz#715b96ea9841593cc33067923f5ec60ebda4f7d7"
-
-caseless@~0.12.0:
-  version "0.12.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/caseless/-/caseless-0.12.0.tgz#1b681c21ff84033c826543090689420d187151dc"
 
 center-align@^0.1.1:
   version "0.1.3"
@@ -421,7 +366,7 @@ chalk@^1.0.0, chalk@^1.1.0, chalk@^1.1.1, chalk@^1.1.3:
     strip-ansi "^3.0.0"
     supports-color "^2.0.0"
 
-chalk@^2.0.0, chalk@^2.0.1:
+chalk@^2.0.1:
   version "2.0.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/chalk/-/chalk-2.0.1.tgz#dbec49436d2ae15f536114e76d14656cdbc0f44d"
   dependencies:
@@ -429,31 +374,13 @@ chalk@^2.0.0, chalk@^2.0.1:
     escape-string-regexp "^1.0.5"
     supports-color "^4.0.0"
 
-chokidar-cli@~1.2.0:
-  version "1.2.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/chokidar-cli/-/chokidar-cli-1.2.0.tgz#8e7f58442273182018be1868e53c22af65a21948"
+chalk@^2.1.0, chalk@^2.3.0:
+  version "2.3.0"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/chalk/-/chalk-2.3.0.tgz#b5ea48efc9c1793dccc9b4767c93914d3f2d52ba"
   dependencies:
-    anymatch "^1.1.0"
-    bluebird "^2.9.24"
-    chokidar "^1.0.1"
-    lodash "^3.7.0"
-    shell-quote "^1.4.3"
-    yargs "^3.7.2"
-
-chokidar@^1.0.1:
-  version "1.7.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/chokidar/-/chokidar-1.7.0.tgz#798e689778151c8076b4b360e5edd28cda2bb468"
-  dependencies:
-    anymatch "^1.3.0"
-    async-each "^1.0.0"
-    glob-parent "^2.0.0"
-    inherits "^2.0.1"
-    is-binary-path "^1.0.0"
-    is-glob "^2.0.0"
-    path-is-absolute "^1.0.0"
-    readdirp "^2.0.0"
-  optionalDependencies:
-    fsevents "^1.0.0"
+    ansi-styles "^3.1.0"
+    escape-string-regexp "^1.0.5"
+    supports-color "^4.0.0"
 
 cli-boxes@^1.0.0:
   version "1.0.0"
@@ -480,7 +407,7 @@ cliui@^2.1.0:
     right-align "^0.1.1"
     wordwrap "0.0.2"
 
-cliui@^3.0.3, cliui@^3.2.0:
+cliui@^3.2.0:
   version "3.2.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/cliui/-/cliui-3.2.0.tgz#120601537a916d29940f934da3b48d585a39213d"
   dependencies:
@@ -492,13 +419,9 @@ clone@^1.0.2:
   version "1.0.2"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/clone/-/clone-1.0.2.tgz#260b7a99ebb1edfe247538175f783243cb19d149"
 
-co@^4.6.0:
-  version "4.6.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/co/-/co-4.6.0.tgz#6ea6bdf3d853ae54ccb8e47bfa0bf3f9031fb184"
-
-code-block-writer@^4.1.0:
-  version "4.1.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/code-block-writer/-/code-block-writer-4.1.0.tgz#f9fa6a866e093547a169851a2448f507808b83f3"
+code-block-writer@^6.2.0:
+  version "6.2.0"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/code-block-writer/-/code-block-writer-6.2.0.tgz#f436d3b9a239bdc5bd96f5c7b764de5b7cde9339"
 
 code-point-at@^1.0.0:
   version "1.1.0"
@@ -513,10 +436,6 @@ color-convert@^1.0.0:
 color-name@^1.1.1:
   version "1.1.3"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/color-name/-/color-name-1.1.3.tgz#a7d0558bd89c42f795dd42328f740831ca53bc25"
-
-colors@^1.1.2:
-  version "1.1.2"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/colors/-/colors-1.1.2.tgz#168a4701756b6a7f51a12ce0c97bfa28c084ed63"
 
 columnify@^1.5.2:
   version "1.5.4"
@@ -574,10 +493,6 @@ configstore@^3.0.0:
     unique-string "^1.0.0"
     write-file-atomic "^2.0.0"
     xdg-basedir "^3.0.0"
-
-console-control-strings@^1.0.0, console-control-strings@~1.1.0:
-  version "1.1.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/console-control-strings/-/console-control-strings-1.1.0.tgz#3d7cf4464db6446ea644bf4b39507f9851008e8e"
 
 conventional-changelog-angular@^1.3.4:
   version "1.4.0"
@@ -852,10 +767,6 @@ delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
 
-delegates@^1.0.0:
-  version "1.0.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
-
 detect-indent@^4.0.0:
   version "4.0.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/detect-indent/-/detect-indent-4.0.0.tgz#f76d064352cdf43a1cb6ce619c4ee3a9475de208"
@@ -912,10 +823,6 @@ error-ex@^1.2.0:
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/error-ex/-/error-ex-1.3.1.tgz#f855a86ce61adc4e8621c3cda21e7a7612c3a8dc"
   dependencies:
     is-arrayish "^0.2.1"
-
-es6-promise@^4.1.1:
-  version "4.1.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/es6-promise/-/es6-promise-4.1.1.tgz#8811e90915d9a0dba36274f0b242dbda78f9c92a"
 
 escape-string-regexp@1.0.5, escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
@@ -1017,12 +924,6 @@ find-up@^2.0.0:
   dependencies:
     locate-path "^2.0.0"
 
-findup-sync@~0.3.0:
-  version "0.3.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/findup-sync/-/findup-sync-0.3.0.tgz#37930aa5d816b777c03445e1966cc6790a4c0b16"
-  dependencies:
-    glob "~5.0.0"
-
 for-in@^1.0.1:
   version "1.0.2"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -1070,46 +971,9 @@ fs.realpath@^1.0.0:
   version "1.0.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/fs.realpath/-/fs.realpath-1.0.0.tgz#1504ad2523158caa40db4a2787cb01411994ea4f"
 
-fsevents@^1.0.0:
-  version "1.1.2"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/fsevents/-/fsevents-1.1.2.tgz#3282b713fb3ad80ede0e9fcf4611b5aa6fc033f4"
-  dependencies:
-    nan "^2.3.0"
-    node-pre-gyp "^0.6.36"
-
-fstream-ignore@^1.0.5:
-  version "1.0.5"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/fstream-ignore/-/fstream-ignore-1.0.5.tgz#9c31dae34767018fe1d249b24dada67d092da105"
-  dependencies:
-    fstream "^1.0.0"
-    inherits "2"
-    minimatch "^3.0.0"
-
-fstream@^1.0.0, fstream@^1.0.10, fstream@^1.0.2:
-  version "1.0.11"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/fstream/-/fstream-1.0.11.tgz#5c1fb1f117477114f0632a0eb4b71b3cb0fd3171"
-  dependencies:
-    graceful-fs "^4.1.2"
-    inherits "~2.0.0"
-    mkdirp ">=0.5 0"
-    rimraf "2"
-
 function-bind@^1.0.2:
   version "1.1.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
-
-gauge@~2.7.3:
-  version "2.7.4"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/gauge/-/gauge-2.7.4.tgz#2c03405c7538c39d7eb37b317022e325fb018bf7"
-  dependencies:
-    aproba "^1.0.3"
-    console-control-strings "^1.0.0"
-    has-unicode "^2.0.0"
-    object-assign "^4.1.0"
-    signal-exit "^3.0.0"
-    string-width "^1.0.1"
-    strip-ansi "^3.0.1"
-    wide-align "^1.1.0"
 
 generate-function@^2.0.0:
   version "2.0.0"
@@ -1218,16 +1082,6 @@ glob@^7.0.3, glob@^7.0.5, glob@^7.0.6, glob@^7.1.1:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-glob@~5.0.0:
-  version "5.0.15"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/glob/-/glob-5.0.15.tgz#1bc936b9e02f4a603fcc222ecf7633d30b8b93b1"
-  dependencies:
-    inflight "^1.0.4"
-    inherits "2"
-    minimatch "2 || 3"
-    once "^1.3.0"
-    path-is-absolute "^1.0.0"
-
 globals@^9.0.0:
   version "9.18.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/globals/-/globals-9.18.0.tgz#aa3896b3e69b487f17e31ed2143d69a8e30c2d8a"
@@ -1280,10 +1134,6 @@ handlebars@^4.0.2, handlebars@^4.0.3:
   optionalDependencies:
     uglify-js "^2.6"
 
-har-schema@^1.0.5:
-  version "1.0.5"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/har-schema/-/har-schema-1.0.5.tgz#d263135f43307c02c602afc8fe95970c0151369e"
-
 har-validator@~2.0.6:
   version "2.0.6"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/har-validator/-/har-validator-2.0.6.tgz#cdcbc08188265ad119b6a5a7c8ab70eecfb5d27d"
@@ -1292,13 +1142,6 @@ har-validator@~2.0.6:
     commander "^2.9.0"
     is-my-json-valid "^2.12.4"
     pinkie-promise "^2.0.0"
-
-har-validator@~4.2.1:
-  version "4.2.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/har-validator/-/har-validator-4.2.1.tgz#33481d0f1bbff600dd203d75812a6a5fba002e2a"
-  dependencies:
-    ajv "^4.9.1"
-    har-schema "^1.0.5"
 
 has-ansi@^2.0.0:
   version "2.0.0"
@@ -1314,7 +1157,7 @@ has-flag@^2.0.0:
   version "2.0.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/has-flag/-/has-flag-2.0.0.tgz#e8207af1cc7b30d446cc70b734b5e8be18f88d51"
 
-has-unicode@^2.0.0, has-unicode@^2.0.1:
+has-unicode@^2.0.1:
   version "2.0.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/has-unicode/-/has-unicode-2.0.1.tgz#e0e6fe6a28cf51138855e086d1691e771de2a8b9"
 
@@ -1386,7 +1229,7 @@ inflight@^1.0.4:
     once "^1.3.0"
     wrappy "1"
 
-inherits@2, inherits@^2.0.1, inherits@^2.0.3, inherits@~2.0.0, inherits@~2.0.3:
+inherits@2, inherits@^2.0.3, inherits@~2.0.3:
   version "2.0.3"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/inherits/-/inherits-2.0.3.tgz#633c2c83e3da42a502f52466022480f4208261de"
 
@@ -1414,12 +1257,6 @@ is-absolute@^0.2.3:
 is-arrayish@^0.2.1:
   version "0.2.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/is-arrayish/-/is-arrayish-0.2.1.tgz#77c99840527aa8ecb1a8ba697b80645a7a926a9d"
-
-is-binary-path@^1.0.0:
-  version "1.0.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/is-binary-path/-/is-binary-path-1.0.1.tgz#75f16642b480f187a711c814161fd3a4a7655898"
-  dependencies:
-    binary-extensions "^1.0.0"
 
 is-buffer@^1.1.5:
   version "1.1.5"
@@ -1654,12 +1491,6 @@ json-schema@0.2.3:
   version "0.2.3"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/json-schema/-/json-schema-0.2.3.tgz#b480c892e59a2f05954ce727bd3f2a4e882f9e13"
 
-json-stable-stringify@^1.0.1:
-  version "1.0.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/json-stable-stringify/-/json-stable-stringify-1.0.1.tgz#9a759d39c5f2ff503fd5300646ed445f88c4f9af"
-  dependencies:
-    jsonify "~0.0.0"
-
 json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   version "5.0.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
@@ -1667,10 +1498,6 @@ json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
 json3@3.3.2:
   version "3.3.2"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/json3/-/json3-3.3.2.tgz#3c0434743df93e2f5c42aee7b19bcb483575f4e1"
-
-jsonify@~0.0.0:
-  version "0.0.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
 
 jsonparse@^1.2.0:
   version "1.3.1"
@@ -1833,10 +1660,6 @@ lodash.templatesettings@^4.0.0:
   dependencies:
     lodash._reinterpolate "~3.0.0"
 
-lodash@^3.7.0:
-  version "3.10.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/lodash/-/lodash-3.10.1.tgz#5bf45e8e49ba4189e17d482789dfd15bd140b7b6"
-
 lodash@^4.0.0, lodash@^4.2.0, lodash@^4.2.1:
   version "4.17.4"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
@@ -1937,7 +1760,7 @@ merge-source-map@^1.0.2:
   dependencies:
     source-map "^0.5.6"
 
-micromatch@^2.1.5, micromatch@^2.3.11:
+micromatch@^2.3.11:
   version "2.3.11"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/micromatch/-/micromatch-2.3.11.tgz#86677c97d1720b363431d04d0d15293bd38c1565"
   dependencies:
@@ -1969,7 +1792,7 @@ mimic-fn@^1.0.0:
   version "1.1.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/mimic-fn/-/mimic-fn-1.1.0.tgz#e667783d92e89dbd342818b5230b9d62a672ad18"
 
-"minimatch@2 || 3", minimatch@^3.0.0, minimatch@^3.0.2, minimatch@^3.0.4:
+minimatch@^3.0.2, minimatch@^3.0.4:
   version "3.0.4"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/minimatch/-/minimatch-3.0.4.tgz#5166e286457f03306064be5497e8dbb0c3d32083"
   dependencies:
@@ -1987,7 +1810,7 @@ minimist@~0.0.1:
   version "0.0.10"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/minimist/-/minimist-0.0.10.tgz#de3f98543dbf96082be48ad1a0c7cda836301dcf"
 
-mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1:
+mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1:
   version "0.5.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
@@ -2021,31 +1844,6 @@ ms@2.0.0:
   version "2.0.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/ms/-/ms-2.0.0.tgz#5608aeadfc00be6c2901df5f9861788de0d597c8"
 
-nan@^2.3.0:
-  version "2.6.2"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/nan/-/nan-2.6.2.tgz#e4ff34e6c95fdfb5aecc08de6596f43605a7db45"
-
-node-pre-gyp@^0.6.36:
-  version "0.6.36"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/node-pre-gyp/-/node-pre-gyp-0.6.36.tgz#db604112cb74e0d477554e9b505b17abddfab786"
-  dependencies:
-    mkdirp "^0.5.1"
-    nopt "^4.0.1"
-    npmlog "^4.0.2"
-    rc "^1.1.7"
-    request "^2.81.0"
-    rimraf "^2.6.1"
-    semver "^5.3.0"
-    tar "^2.2.1"
-    tar-pack "^3.4.0"
-
-nopt@^4.0.1:
-  version "4.0.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/nopt/-/nopt-4.0.1.tgz#d0d4685afd5415193c8c7505602d0d17cd64474d"
-  dependencies:
-    abbrev "1"
-    osenv "^0.1.4"
-
 nopt@~1.0.10:
   version "1.0.10"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/nopt/-/nopt-1.0.10.tgz#6ddd21bd2a31417b92727dd585f8a6f37608ebee"
@@ -2072,15 +1870,6 @@ npm-run-path@^2.0.0:
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/npm-run-path/-/npm-run-path-2.0.2.tgz#35a9232dfa35d7067b4cb2ddf2357b1871536c5f"
   dependencies:
     path-key "^2.0.0"
-
-npmlog@^4.0.2:
-  version "4.1.2"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/npmlog/-/npmlog-4.1.2.tgz#08a7f2a8bf734604779a9efa4ad5cc717abb954b"
-  dependencies:
-    are-we-there-yet "~1.1.2"
-    console-control-strings "~1.1.0"
-    gauge "~2.7.3"
-    set-blocking "~2.0.0"
 
 null-check@^1.0.0:
   version "1.0.0"
@@ -2126,7 +1915,7 @@ oauth-sign@~0.8.1:
   version "0.8.2"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/oauth-sign/-/oauth-sign-0.8.2.tgz#46a6ab7f0aead8deae9ec0565780b7d4efeb9d43"
 
-object-assign@^4.0.1, object-assign@^4.1.0:
+object-assign@^4.0.1, object-assign@^4.1.0, object-assign@^4.1.1:
   version "4.1.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/object-assign/-/object-assign-4.1.1.tgz#2109adc7965887cfc05cbbd442cac8bfbb360863"
 
@@ -2143,7 +1932,7 @@ object.pick@^1.1.1, object.pick@^1.1.2:
   dependencies:
     isobject "^2.1.0"
 
-once@^1.3.0, once@^1.3.3:
+once@^1.3.0:
   version "1.4.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/once/-/once-1.4.0.tgz#583b1aa775961d4b113ac17d9c50baef9dd76bd1"
   dependencies:
@@ -2153,14 +1942,14 @@ onetime@^1.0.0:
   version "1.1.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/onetime/-/onetime-1.1.0.tgz#a1f7838f8314c516f05ecefcbc4ccfe04b4ed789"
 
-optimist@^0.6.1, optimist@~0.6.0:
+optimist@^0.6.1:
   version "0.6.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/optimist/-/optimist-0.6.1.tgz#da3ea74686fa21a19a111c326e90eb15a0196686"
   dependencies:
     minimist "~0.0.1"
     wordwrap "~0.0.2"
 
-os-homedir@^1.0.0, os-homedir@^1.0.1:
+os-homedir@^1.0.1:
   version "1.0.2"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/os-homedir/-/os-homedir-1.0.2.tgz#ffbc4988336e0e833de0c168c7ef152121aa7fb3"
 
@@ -2177,17 +1966,6 @@ os-locale@^2.0.0:
     execa "^0.7.0"
     lcid "^1.0.0"
     mem "^1.1.0"
-
-os-tmpdir@^1.0.0:
-  version "1.0.2"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/os-tmpdir/-/os-tmpdir-1.0.2.tgz#bbe67406c79aa85c5cfec766fe5734555dfa1274"
-
-osenv@^0.1.4:
-  version "0.1.4"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/osenv/-/osenv-0.1.4.tgz#42fe6d5953df06c8064be6f176c3d05aaaa34644"
-  dependencies:
-    os-homedir "^1.0.0"
-    os-tmpdir "^1.0.0"
 
 p-finally@^1.0.0:
   version "1.0.0"
@@ -2266,10 +2044,6 @@ path-type@^2.0.0:
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/path-type/-/path-type-2.0.0.tgz#f012ccb8415b7096fc2daa1054c3d72389594c73"
   dependencies:
     pify "^2.0.0"
-
-performance-now@^0.2.0:
-  version "0.2.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/performance-now/-/performance-now-0.2.0.tgz#33ef30c5c77d4ea21c5a53869d91b56d8f2555e5"
 
 pify@^2.0.0, pify@^2.3.0:
   version "2.3.0"
@@ -2354,10 +2128,6 @@ qs@~6.3.0:
   version "6.3.2"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/qs/-/qs-6.3.2.tgz#e75bd5f6e268122a2a0e0bda630b2550c166502c"
 
-qs@~6.4.0:
-  version "6.4.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/qs/-/qs-6.4.0.tgz#13e26d28ad6b0ffaa91312cd3bf708ed351e7233"
-
 randomatic@^1.1.3:
   version "1.1.7"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/randomatic/-/randomatic-1.1.7.tgz#c7abe9cc8b87c0baa876b19fde83fd464797e38c"
@@ -2365,7 +2135,7 @@ randomatic@^1.1.3:
     is-number "^3.0.0"
     kind-of "^4.0.0"
 
-rc@^1.0.1, rc@^1.1.5, rc@^1.1.6, rc@^1.1.7:
+rc@^1.0.1, rc@^1.1.5, rc@^1.1.6:
   version "1.2.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/rc/-/rc-1.2.1.tgz#2e03e8e42ee450b8cb3dce65be1bf8974e1dfd95"
   dependencies:
@@ -2404,7 +2174,7 @@ read-pkg@^2.0.0:
     normalize-package-data "^2.3.2"
     path-type "^2.0.0"
 
-readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@^2.1.4, readable-stream@^2.1.5, readable-stream@^2.2.2:
+readable-stream@^2.1.5, readable-stream@^2.2.2:
   version "2.3.3"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/readable-stream/-/readable-stream-2.3.3.tgz#368f2512d79f9d46fdfc71349ae7878bbc1eb95c"
   dependencies:
@@ -2415,15 +2185,6 @@ readable-stream@^2.0.2, readable-stream@^2.0.6, readable-stream@^2.1.4, readable
     safe-buffer "~5.1.1"
     string_decoder "~1.0.3"
     util-deprecate "~1.0.1"
-
-readdirp@^2.0.0:
-  version "2.1.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/readdirp/-/readdirp-2.1.0.tgz#4ed0ad060df3073300c48440373f72d1cc642d78"
-  dependencies:
-    graceful-fs "^4.1.2"
-    minimatch "^3.0.2"
-    readable-stream "^2.0.2"
-    set-immediate-shim "^1.0.1"
 
 redent@^1.0.0:
   version "1.0.0"
@@ -2499,33 +2260,6 @@ request@2.79.0:
     tunnel-agent "~0.4.1"
     uuid "^3.0.0"
 
-request@^2.81.0:
-  version "2.81.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/request/-/request-2.81.0.tgz#c6928946a0e06c5f8d6f8a9333469ffda46298a0"
-  dependencies:
-    aws-sign2 "~0.6.0"
-    aws4 "^1.2.1"
-    caseless "~0.12.0"
-    combined-stream "~1.0.5"
-    extend "~3.0.0"
-    forever-agent "~0.6.1"
-    form-data "~2.1.1"
-    har-validator "~4.2.1"
-    hawk "~3.1.3"
-    http-signature "~1.1.0"
-    is-typedarray "~1.0.0"
-    isstream "~0.1.2"
-    json-stringify-safe "~5.0.1"
-    mime-types "~2.1.7"
-    oauth-sign "~0.8.1"
-    performance-now "^0.2.0"
-    qs "~6.4.0"
-    safe-buffer "^5.0.1"
-    stringstream "~0.0.4"
-    tough-cookie "~2.3.0"
-    tunnel-agent "^0.6.0"
-    uuid "^3.0.0"
-
 require-directory@^2.1.1:
   version "2.1.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/require-directory/-/require-directory-2.1.1.tgz#8c64ad5fd30dab1c976e2344ffe7f792a6a6df42"
@@ -2557,7 +2291,7 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
-rimraf@2, rimraf@^2.3.3, rimraf@^2.4.4, rimraf@^2.5.1, rimraf@^2.5.4, rimraf@^2.6.1:
+rimraf@^2.3.3, rimraf@^2.4.4, rimraf@^2.5.4, rimraf@^2.6.1:
   version "2.6.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/rimraf/-/rimraf-2.6.1.tgz#c2338ec643df7a1b7fe5c54fa86f57428a55f33d"
   dependencies:
@@ -2581,13 +2315,9 @@ semver@~5.0.1:
   version "5.0.3"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/semver/-/semver-5.0.3.tgz#77466de589cd5d3c95f138aa78bc569a3cb5d27a"
 
-set-blocking@^2.0.0, set-blocking@~2.0.0:
+set-blocking@^2.0.0:
   version "2.0.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/set-blocking/-/set-blocking-2.0.0.tgz#045f9782d011ae9a6803ddd382b24392b3d890f7"
-
-set-immediate-shim@^1.0.1:
-  version "1.0.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/set-immediate-shim/-/set-immediate-shim-1.0.1.tgz#4b2b1b27eb808a9f8dcc481a58e5e56f599f3f61"
 
 shebang-command@^1.2.0:
   version "1.2.0"
@@ -2598,15 +2328,6 @@ shebang-command@^1.2.0:
 shebang-regex@^1.0.0:
   version "1.0.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
-
-shell-quote@^1.4.3:
-  version "1.6.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/shell-quote/-/shell-quote-1.6.1.tgz#f4781949cce402697127430ea3b3c5476f481767"
-  dependencies:
-    array-filter "~0.0.0"
-    array-map "~0.0.0"
-    array-reduce "~0.0.0"
-    jsonify "~0.0.0"
 
 signal-exit@^2.0.0:
   version "2.1.2"
@@ -2636,11 +2357,11 @@ sort-keys@^1.0.0:
   dependencies:
     is-plain-obj "^1.0.0"
 
-source-map-support@^0.4.0, source-map-support@^0.4.15:
-  version "0.4.15"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/source-map-support/-/source-map-support-0.4.15.tgz#03202df65c06d2bd8c7ec2362a193056fef8d3b1"
+source-map-support@^0.5.0:
+  version "0.5.0"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/source-map-support/-/source-map-support-0.5.0.tgz#2018a7ad2bdf8faf2691e5fddab26bed5a2bacab"
   dependencies:
-    source-map "^0.5.6"
+    source-map "^0.6.0"
 
 source-map@^0.4.4:
   version "0.4.4"
@@ -2651,6 +2372,10 @@ source-map@^0.4.4:
 source-map@^0.5.0, source-map@^0.5.3, source-map@^0.5.6, source-map@~0.5.1:
   version "0.5.6"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/source-map/-/source-map-0.5.6.tgz#75ce38f52bf0733c5a7f0c118d81334a2bb5f412"
+
+source-map@^0.6.0:
+  version "0.6.1"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
 
 spawn-wrap@1.2.4:
   version "1.2.4"
@@ -2707,7 +2432,7 @@ sshpk@^1.7.0:
     jsbn "~0.1.0"
     tweetnacl "~0.14.0"
 
-standard-version@^4.0.0:
+standard-version@^4.2.0:
   version "4.2.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/standard-version/-/standard-version-4.2.0.tgz#3017e8c5ced2a92db7501790255c3ba85157375d"
   dependencies:
@@ -2806,27 +2531,6 @@ supports-color@^4.0.0:
   dependencies:
     has-flag "^2.0.0"
 
-tar-pack@^3.4.0:
-  version "3.4.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tar-pack/-/tar-pack-3.4.0.tgz#23be2d7f671a8339376cbdb0b8fe3fdebf317984"
-  dependencies:
-    debug "^2.2.0"
-    fstream "^1.0.10"
-    fstream-ignore "^1.0.5"
-    once "^1.3.3"
-    readable-stream "^2.1.4"
-    rimraf "^2.5.1"
-    tar "^2.2.1"
-    uid-number "^0.0.6"
-
-tar@^2.2.1:
-  version "2.2.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tar/-/tar-2.2.1.tgz#8e4d2a256c0e2185c6b18ad694aec968b83cb1d1"
-  dependencies:
-    block-stream "*"
-    fstream "^1.0.2"
-    inherits "2"
-
 term-size@^1.2.0:
   version "1.2.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/term-size/-/term-size-1.2.0.tgz#458b83887f288fc56d6fffbfad262e26638efa69"
@@ -2900,33 +2604,37 @@ trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
 
-ts-node@^3.0.0:
-  version "3.2.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/ts-node/-/ts-node-3.2.1.tgz#9595dd840d03e62bc79214ce5a7b51e55e3c4ffc"
+ts-node@^4.0.2:
+  version "4.0.2"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/ts-node/-/ts-node-4.0.2.tgz#cb3d039b9898fdc79ad09ab7e69c84564c8c41ee"
   dependencies:
     arrify "^1.0.0"
-    chalk "^2.0.0"
+    chalk "^2.3.0"
     diff "^3.1.0"
     make-error "^1.1.1"
     minimist "^1.2.0"
     mkdirp "^0.5.1"
-    source-map-support "^0.4.0"
-    tsconfig "^6.0.0"
+    source-map-support "^0.5.0"
+    tsconfig "^7.0.0"
     v8flags "^3.0.0"
     yn "^2.0.0"
 
-ts-simple-ast@^0.38.0:
-  version "0.38.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/ts-simple-ast/-/ts-simple-ast-0.38.1.tgz#0fefc4da4078f4121a11d2fd7fa50e444f116544"
+ts-simple-ast@^4.1.0:
+  version "4.1.0"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/ts-simple-ast/-/ts-simple-ast-4.1.0.tgz#0cb6b41be2bd9c8529ef30c5693304e21ea5fed7"
   dependencies:
-    code-block-writer "^4.1.0"
+    code-block-writer "^6.2.0"
     globby "^6.1.0"
-    typescript "2.3.2"
+    minimatch "^3.0.4"
+    object-assign "^4.1.1"
+    typescript "2.6.x"
 
-tsconfig@^6.0.0:
-  version "6.0.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tsconfig/-/tsconfig-6.0.0.tgz#6b0e8376003d7af1864f8df8f89dd0059ffcd032"
+tsconfig@^7.0.0:
+  version "7.0.0"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tsconfig/-/tsconfig-7.0.0.tgz#84538875a4dc216e5c4a5432b3a4dec3d54e91b7"
   dependencies:
+    "@types/strip-bom" "^3.0.0"
+    "@types/strip-json-comments" "0.0.30"
     strip-bom "^3.0.0"
     strip-json-comments "^2.0.0"
 
@@ -2934,21 +2642,24 @@ tslib@^1.0.0, tslib@^1.7.1:
   version "1.7.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tslib/-/tslib-1.7.1.tgz#bc8004164691923a79fe8378bbeb3da2017538ec"
 
-tslint-config-airbnb@^5.2.1:
-  version "5.2.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tslint-config-airbnb/-/tslint-config-airbnb-5.2.1.tgz#dec25ce496ad223d970506ce1cd1ded9f9b3af93"
-  dependencies:
-    tslint-consistent-codestyle "^1.4.0"
-    tslint-eslint-rules "^4.1.1"
-    tslint-microsoft-contrib "^5.0.0"
-    vrsource-tslint-rules "^5.1.0"
+tslib@^1.8.0:
+  version "1.8.1"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tslib/-/tslib-1.8.1.tgz#6946af2d1d651a7b1863b531d6e5afa41aa44eac"
 
-tslint-consistent-codestyle@^1.4.0:
-  version "1.5.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tslint-consistent-codestyle/-/tslint-consistent-codestyle-1.5.1.tgz#11b6ae6af5a53cb6bd0351d9b6637eabc76d9b7d"
+tslint-config-airbnb@^5.4.2:
+  version "5.4.2"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tslint-config-airbnb/-/tslint-config-airbnb-5.4.2.tgz#18eeff28f697b578731249d9a3ef8955b2f04f44"
+  dependencies:
+    tslint-consistent-codestyle "^1.10.0"
+    tslint-eslint-rules "^4.1.1"
+    tslint-microsoft-contrib "~5.0.1"
+
+tslint-consistent-codestyle@^1.10.0:
+  version "1.11.0"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tslint-consistent-codestyle/-/tslint-consistent-codestyle-1.11.0.tgz#051493eeb3536a74e98d14b66f38028a785f8c2b"
   dependencies:
     tslib "^1.7.1"
-    tsutils "^2.5.0"
+    tsutils "^2.12.2"
 
 tslint-eslint-rules@^4.1.1:
   version "4.1.1"
@@ -2958,18 +2669,19 @@ tslint-eslint-rules@^4.1.1:
     tslib "^1.0.0"
     tsutils "^1.4.0"
 
-tslint-microsoft-contrib@^5.0.0:
+tslint-microsoft-contrib@~5.0.1:
   version "5.0.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tslint-microsoft-contrib/-/tslint-microsoft-contrib-5.0.1.tgz#328ee9c28d07cdf793293204c96e2ffab9221994"
   dependencies:
     tsutils "^1.4.0"
 
-tslint@^5.0.0:
-  version "5.5.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tslint/-/tslint-5.5.0.tgz#10e8dab3e3061fa61e9442e8cee3982acf20a6aa"
+tslint@^5.8.0:
+  version "5.8.0"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tslint/-/tslint-5.8.0.tgz#1f49ad5b2e77c76c3af4ddcae552ae4e3612eb13"
   dependencies:
     babel-code-frame "^6.22.0"
-    colors "^1.1.2"
+    builtin-modules "^1.1.1"
+    chalk "^2.1.0"
     commander "^2.9.0"
     diff "^3.2.0"
     glob "^7.1.1"
@@ -2977,37 +2689,17 @@ tslint@^5.0.0:
     resolve "^1.3.2"
     semver "^5.3.0"
     tslib "^1.7.1"
-    tsutils "^2.5.1"
-
-tslint@~5.1.0:
-  version "5.1.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tslint/-/tslint-5.1.0.tgz#51a47baeeb58956fcd617bd2cf00e2ef0eea2ed9"
-  dependencies:
-    babel-code-frame "^6.22.0"
-    colors "^1.1.2"
-    diff "^3.2.0"
-    findup-sync "~0.3.0"
-    glob "^7.1.1"
-    optimist "~0.6.0"
-    resolve "^1.3.2"
-    semver "^5.3.0"
-    tsutils "^1.4.0"
+    tsutils "^2.12.1"
 
 tsutils@^1.4.0:
   version "1.9.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tsutils/-/tsutils-1.9.1.tgz#b9f9ab44e55af9681831d5f28d0aeeaf5c750cb0"
 
-tsutils@^2.5.0, tsutils@^2.5.1:
-  version "2.7.1"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tsutils/-/tsutils-2.7.1.tgz#411a0e9466525a2b2869260a55620d7292155e24"
+tsutils@^2.12.1, tsutils@^2.12.2:
+  version "2.13.1"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tsutils/-/tsutils-2.13.1.tgz#d6d1cc0f7c04cf9fb3b28a292973cffb9cfbe09a"
   dependencies:
-    tslib "^1.7.1"
-
-tunnel-agent@^0.6.0:
-  version "0.6.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/tunnel-agent/-/tunnel-agent-0.6.0.tgz#27a5dea06b36b04a0a9966774b290868f0fc40fd"
-  dependencies:
-    safe-buffer "^5.0.1"
+    tslib "^1.8.0"
 
 tunnel-agent@~0.4.1:
   version "0.4.3"
@@ -3029,11 +2721,11 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
 
-typescript@2.3.2:
-  version "2.3.2"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/typescript/-/typescript-2.3.2.tgz#f0f045e196f69a72f06b25fd3bd39d01c3ce9984"
+typescript@2.6.x, typescript@^2.6.2:
+  version "2.6.2"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/typescript/-/typescript-2.6.2.tgz#3c5b6fd7f6de0914269027f03c0946758f7673a4"
 
-typescript@^2.1.4, typescript@^2.4.2:
+typescript@^2.1.4:
   version "2.4.2"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/typescript/-/typescript-2.4.2.tgz#f8395f85d459276067c988aa41837a8f82870844"
 
@@ -3107,10 +2799,6 @@ uglify-to-browserify@~1.0.0:
   version "1.0.2"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/uglify-to-browserify/-/uglify-to-browserify-1.0.2.tgz#6e0924d6bda6b5afe349e39a6d632850a0f882b7"
 
-uid-number@^0.0.6:
-  version "0.0.6"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
-
 unc-path-regex@^0.1.0:
   version "0.1.2"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/unc-path-regex/-/unc-path-regex-0.1.2.tgz#e73dd3d7b0d7c5ed86fbac6b0ae7d8c6a69d50fa"
@@ -3175,13 +2863,6 @@ verror@1.3.6:
   dependencies:
     extsprintf "1.0.2"
 
-vrsource-tslint-rules@^5.1.0:
-  version "5.1.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/vrsource-tslint-rules/-/vrsource-tslint-rules-5.1.0.tgz#45f7817af6d0490996bf00c19cf7a5af30c797a4"
-  dependencies:
-    chokidar-cli "~1.2.0"
-    tslint "~5.1.0"
-
 wcwidth@^1.0.0:
   version "1.0.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/wcwidth/-/wcwidth-1.0.1.tgz#f0b0dcf915bc5ff1528afadb2c0e17b532da2fe8"
@@ -3202,12 +2883,6 @@ which@^1.2.4, which@^1.2.9:
   dependencies:
     isexe "^2.0.0"
 
-wide-align@^1.1.0:
-  version "1.1.2"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/wide-align/-/wide-align-1.1.2.tgz#571e0f1b0604636ebc0dfc21b0339bbe31341710"
-  dependencies:
-    string-width "^1.0.2"
-
 widest-line@^1.0.0:
   version "1.0.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/widest-line/-/widest-line-1.0.0.tgz#0c09c85c2a94683d0d7eaf8ee097d564bf0e105c"
@@ -3217,10 +2892,6 @@ widest-line@^1.0.0:
 window-size@0.1.0:
   version "0.1.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/window-size/-/window-size-0.1.0.tgz#5438cd2ea93b202efa3a19fe8887aee7c94f9c9d"
-
-window-size@^0.1.4:
-  version "0.1.4"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/window-size/-/window-size-0.1.4.tgz#f8e1aa1ee5a53ec5bf151ffa09742a6ad7697876"
 
 wordwrap@0.0.2:
   version "0.0.2"
@@ -3269,7 +2940,7 @@ xtend@^4.0.0, xtend@^4.0.1, xtend@~4.0.1:
   version "4.0.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/xtend/-/xtend-4.0.1.tgz#a5c6d532be656e23db820efb943a1f04998d63af"
 
-y18n@^3.2.0, y18n@^3.2.1:
+y18n@^3.2.1:
   version "3.2.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/y18n/-/y18n-3.2.1.tgz#6d15fba884c08679c0d77e88e7759e811e07fa41"
 
@@ -3288,18 +2959,6 @@ yargs-parser@^7.0.0:
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/yargs-parser/-/yargs-parser-7.0.0.tgz#8d0ac42f16ea55debd332caf4c4038b3e3f5dfd9"
   dependencies:
     camelcase "^4.1.0"
-
-yargs@^3.7.2:
-  version "3.32.0"
-  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/yargs/-/yargs-3.32.0.tgz#03088e9ebf9e756b69751611d2a5ef591482c995"
-  dependencies:
-    camelcase "^2.0.1"
-    cliui "^3.0.3"
-    decamelize "^1.1.1"
-    os-locale "^1.4.0"
-    string-width "^1.0.1"
-    window-size "^0.1.4"
-    y18n "^3.2.0"
 
 yargs@^7.1.0:
   version "7.1.0"

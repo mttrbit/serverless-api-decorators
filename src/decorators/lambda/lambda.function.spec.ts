@@ -8,7 +8,6 @@ import {
   LAMBDA_SYMBOL,
 } from './index';
 
-
 const d = Debug('test');
 
 @lambdaService({
@@ -34,20 +33,17 @@ class TestService {
 
 const expect = chai.expect;
 
-
 const promisify = (service: object, functionName: string, event, context) =>
   new Promise((resolve, reject) => {
-    (service as any)[functionName]
-      .apply(functionName, [
-        {},
-        {},
-        (err, resp) => {
-          if (err) reject(err);
-          else resolve(resp);
-        },
-      ]);
+    (service as any)[functionName].apply(functionName, [
+      {},
+      {},
+      (err, resp) => {
+        if (err) reject(err);
+        else resolve(resp);
+      },
+    ]);
   });
-
 
 describe('decorators', () => {
   it('test function', (done) => {
@@ -71,18 +67,17 @@ describe('decorators', () => {
         name: 'test',
         path: '/test',
       },
-      'should match provided config');
-
-    expect(endpointsDef).to.be.eql(
-      [
-        {
-          functionName: 'testMethod',
-          integration: 'lambda',
-          method: 'get',
-          name: 'test',
-          path: '/',
-        },
-      ],
+      'should match provided config',
     );
+
+    expect(endpointsDef).to.be.eql([
+      {
+        functionName: 'testMethod',
+        integration: 'lambda',
+        method: 'get',
+        name: 'test',
+        path: '/',
+      },
+    ]);
   });
 });
