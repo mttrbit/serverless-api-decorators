@@ -2,7 +2,7 @@ import * as Debug from 'debug';
 import {
   lambdaService,
   lambdaFunction,
-} from "sls-api-decorators/decorators/lambda";
+} from 'sls-api-decorators/decorators/lambda';
 
 const debug = Debug('stories-service');
 
@@ -11,7 +11,7 @@ const debug = Debug('stories-service');
   path: 'stories',
   xOrigin: true,
 })
-class StoryService {
+export class StoryService {
   constructor() {
     debug('Initing StoryService');
     // debug('User Factory', this.User);
@@ -26,11 +26,13 @@ class StoryService {
   public list(event, offset, limit) {
     debug('Running welcome');
 
-    return [{
-      id: 1,
-      title: 'Il nome della rosa',
-      author: 'Umberto Eco',
-    }];
+    return [
+      {
+        id: 1,
+        title: 'Il nome della rosa',
+        author: 'Umberto Eco',
+      },
+    ];
   }
 
   @lambdaFunction({
@@ -71,5 +73,3 @@ class StoryService {
     throw new Error('something weird just happened');
   }
 }
-
-export { StoryService };

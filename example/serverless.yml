@@ -29,7 +29,7 @@ plugins:
   - sls-api-decorators
 
 custom:
-  artifactsFolder: lib/api
+  artifactsFolder: dist/api
 
 # you can overwrite defaults here
 #  stage: dev

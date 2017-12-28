@@ -14,7 +14,6 @@ const debug = Debug('app');
   services: [UserService, StoryService],
 })
 export class App {
-
   public services: any;
   public factories: any;
 

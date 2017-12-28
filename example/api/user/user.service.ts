@@ -1,8 +1,8 @@
-import * as Debug from "debug";
+import * as Debug from 'debug';
 import {
   lambdaService,
   lambdaFunction,
-} from "sls-api-decorators/decorators/lambda";
+} from 'sls-api-decorators/decorators/lambda';
 
 const debug = Debug('bazooka');
 
@@ -11,8 +11,7 @@ const debug = Debug('bazooka');
   path: 'users',
   xOrigin: true,
 })
-class UserService {
-
+export class UserService {
   // @Factory()
   // private User: User;
 
@@ -39,7 +38,8 @@ class UserService {
 
     return {
       event,
-      message: 'Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!',
+      message:
+        'Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!',
     };
   }
 
@@ -52,11 +52,13 @@ class UserService {
   public list(event, offset, limit) {
     debug('Running welcome');
 
-    return [{
-      name: 'davide cavaliere',
-      email: 'cavaliere.davide@gmail.com',
-      provider: 'googleplus',
-    }];
+    return [
+      {
+        name: 'davide cavaliere',
+        email: 'cavaliere.davide@gmail.com',
+        provider: 'googleplus',
+      },
+    ];
   }
 
   @lambdaFunction({
@@ -73,7 +75,6 @@ class UserService {
       name: 'dcavaliere',
       email: 'cavaliere.davide@gmail.com',
     };
-
   }
 
   @lambdaFunction({
@@ -98,5 +99,3 @@ class UserService {
     throw new Error('something weird just happened');
   }
 }
-
-export { UserService };

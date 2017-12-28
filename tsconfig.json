@@ -1,37 +1,44 @@
 {
-  "compilerOptions": {
-    "target": "es6",
-    "module": "commonjs",
-    "alwaysStrict": true,
-    "rootDir": ".",
-    "sourceMap": true,
-    "noUnusedLocals": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "declaration": true,
-    "noImplicitAny": false,
-    "outDir": "./lib",
-    "preserveConstEnums": true,
-    "removeComments": true,
-    "typeRoots": [
-      "./node_modules/@types"
+    "compilerOptions": {
+        "target": "es5",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "alwaysStrict": true,
+        "sourceMap": true,
+        "inlineSources": true,
+        "noUnusedLocals": true,
+        "noEmitHelpers": false,
+        "noImplicitAny": false,
+        "declaration": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "skipLibCheck": false,
+        "stripInternal": true,
+        "allowSyntheticDefaultImports": true,
+        "outDir": "./dist",
+        "rootDir": "./src",
+        "preserveConstEnums": true,
+        "removeComments": true,
+        "typeRoots": [
+            "./node_modules/@types"
+        ],
+        "types": [
+            "chai",
+            "debug",
+            "mocha",
+            "node"
+        ],
+        "lib": [
+            "es2015",
+            "es2016.array.include"
+        ]
+    },
+    "include": [
+        "./src/**/*.ts"
     ],
-    "types": [
-      "chai",
-      "debug",
-      "mocha",
-      "node"
-    ],
-    "lib": [
-      "es2015",
-      "es2016.array.include"
+    "exclude": [
+        "dist",
+        "node_modules",
+        "src/**/*.spec.ts"
     ]
-  },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules",
-    "**/*-spec.ts"
-  ]
 }

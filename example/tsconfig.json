@@ -1,25 +1,29 @@
 {
-  "compilerOptions": {
-   "target": "es5",
-    "module": "commonjs",
-    "alwaysStrict": true,
-    "sourceMap": true,
-    "noUnusedLocals": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "declaration": true,
-    "moduleResolution": "node",
-    "noImplicitAny": false,
-    "rootDir": "./",
-    "outDir": "lib",
-    "preserveConstEnums": true,
-    "removeComments": true
-  },
-  "exclude": [
-    "api/user",
-    "lib",
-    "node_modules"
-
-  ],
-  "compileOnSave": true
+    "compilerOptions": {
+        "declaration": true,
+        "alwaysStrict": true,
+        "declaration": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "preserveConstEnums": true,
+        "removeComments": true,
+        "noEmitHelpers": false,
+        "noImplicitAny": false,
+        "types": [
+            "node"
+        ],
+        "mapRoot": "./",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "rootDir": "./",
+        "outDir": "./dist",
+        "baseUrl": ".",
+        "sourceMap": true,
+        "target": "ES5"
+    },
+    "exclude": [
+        "api/user",
+        "dist",
+        "node_modules"
+    ]
 }

@@ -1,18 +1,8 @@
 {
-  "name": "example2",
-  "version": "1.0.0",
-  "description": "",
-  "main": "handler.js",
-  "scripts": {
-    "start": "tsc -w",
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "MIT",
-  "devDependencies": {
-    "typescript": "^2.0.0"
-  },
-  "dependencies": {
-    "sls-api-decorators": "../lib"
-  }
+    "main": "./dist/handler.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "build": "npm link sls-api-decorators && tsc",
+        "start": "sls init"
+    }
 }

@@ -1,0 +1,13 @@
+{
+  "name": "sls-api-decorators",
+  "version": "0.5.0",
+  "description": "serverless plugin to write lambda functions in typescript making use of IoC technics to reduce coding effort",
+  "license": "MIT",
+  "repository": "https://github.com/mttrbit/serverless-api-decorators/example",
+  "author": "",
+  "keywords": [
+    "serverless api typescript decorators auto configuration"
+  ],
+  "main": "index.js",
+  "typings": "index.d.ts"
+}

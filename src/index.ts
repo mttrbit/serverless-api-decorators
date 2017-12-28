@@ -1,3 +1,4 @@
+import * as fs from 'fs';
 import * as Debug from 'debug';
 import * as path from 'path';
 import tsSimpleAst from 'ts-simple-ast';
@@ -35,7 +36,7 @@ class Serverless {
 
     const ast = new tsSimpleAst({
       compilerOptions: {
-        target: ts.ScriptTarget.ES3,
+        target: ts.ScriptTarget.ES2016,
       },
     });
 
@@ -95,10 +96,14 @@ export const ${varName} = ${value};
                 },
               },
             ],
-            handler: `lib/handler.${serviceDescription.name}_${endpoint.name}`,
+            handler: `dist/handler.${serviceDescription.name}_${endpoint.name}`,
           };
         }
       }
+
+      try {
+        fs.unlinkSync(path.join(servicePath, 'handler.ts'));
+      } catch (e) { }
 
       const sourceFile = ast.createSourceFile(
         path.join(servicePath, 'handler.ts'),
