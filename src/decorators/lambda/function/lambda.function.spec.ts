@@ -1,12 +1,9 @@
 import * as chai from 'chai';
 import 'mocha';
 import * as Debug from 'debug';
-import {
-  lambdaService,
-  lambdaFunction,
-  ENDPOINT_SYMBOL,
-  LAMBDA_SYMBOL,
-} from './index';
+import { ENDPOINT_SYMBOL, LAMBDA_SYMBOL } from '../symbols';
+import { lambdaService } from '../lambda.service';
+import { lambdaFunction } from './index';
 
 const d = Debug('test');
 

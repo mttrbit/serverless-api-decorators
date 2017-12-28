@@ -57,25 +57,23 @@ const app = new App();
 
     try {
       const req = path.join(servicePath, artifactsPath);
-      // debug('requiring: ', req);
+      debug('requiring: ', req);
 
       const serviceInstances: any = require(req).services;
-      // debug('serviceInstances: ', serviceInstances);
+      debug('serviceInstances: ', serviceInstances);
 
       for (const serviceName of Object.keys(serviceInstances)) {
-        // debug('serviceName: ', serviceName);
+        debug('serviceName: ', serviceName);
         const service = serviceInstances[serviceName];
-        // debug('service:', service[EndpointSymbol]);
-
+        debug('service:', service[ENDPOINT_SYMBOL]);
         const serviceDescription = service[ENDPOINT_SYMBOL];
-        // debug('serviceDescription', serviceDescriulesption);
+        debug('serviceDescription', serviceDescription);
         const endpoints = service[LAMBDA_SYMBOL];
-        // debug('endpoints', endpoints);
+        debug('endpoints', endpoints);
 
-        // debug('adding functions');
-
+        debug('adding functions');
         for (const endpoint of endpoints) {
-          // debug('registering endpoint', endpoint);
+          debug('registering endpoint', endpoint);
           // const name = endpoint.name;
 
           const varName = `${serviceDescription.name}_${endpoint.name}`;

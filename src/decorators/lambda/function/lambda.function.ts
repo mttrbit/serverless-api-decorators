@@ -1,7 +1,7 @@
 import * as Debug from 'debug';
-import { LAMBDA_SYMBOL } from './symbols';
-import { LambdaConfig } from './types';
-import { DefaultLambdaFunctionNameResolver as FunctionNameResolver } from './resolver';
+import { LAMBDA_SYMBOL } from '../symbols';
+import { LambdaFunctionConfig } from './types';
+import { createDecoratedConfig } from './factories';
 
 const debug = Debug('annotations');
 
@@ -20,12 +20,8 @@ const extractArgs = (event) => {
   };
 };
 
-export const lambdaFunction = (config: LambdaConfig) => {
+export const lambdaFunction = (config: LambdaFunctionConfig) => {
   debug('Creating function annotatition');
-
-  config.integration = config.integration || 'lambda';
-
-  debug(config);
 
   return (target: any, key: string, descriptor: PropertyDescriptor) => {
     debug('function name:', key);
@@ -37,12 +33,9 @@ export const lambdaFunction = (config: LambdaConfig) => {
 
     if (!targetProto[LAMBDA_SYMBOL]) targetProto[LAMBDA_SYMBOL] = [];
 
-    // setting real function name
-    const functionSymbol = 'functionName';
-    (config as any)[functionSymbol] = key;
-
-    config.name = new FunctionNameResolver().getFunctionName(key, config);
-    target.constructor.prototype[LAMBDA_SYMBOL].push(config);
+    const decoratedConfig = createDecoratedConfig({ config, key });
+    debug(decoratedConfig);
+    target.constructor.prototype[LAMBDA_SYMBOL].push(decoratedConfig);
 
     debug('endpoint defined', target.constructor.prototype);
 
