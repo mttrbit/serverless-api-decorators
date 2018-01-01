@@ -14,6 +14,45 @@ const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
 const until = (cond, time) =>
   cond().then((result) => result || delay(time).then(() => until(cond, time)));
 
+const destructEndpoint = ({ keys }: { keys: [string] }) => (endpoint) => {
+  const reducer = (accumulator, key) => {
+    accumulator[key] = endpoint[key];
+    return accumulator;
+  };
+  return keys.reduce(reducer, {});
+};
+
+const updateProperty = ({ key }, fn) => (obj) =>
+  Object.assign(obj, { [key]: fn(obj[key]) });
+
+const createFunction = (handlerName) => (obj) => {
+  return {
+    events: [obj],
+    handler: handlerName,
+  };
+};
+
+const reducer = (accumulator, fn) => accumulator.map(fn);
+
+const compose = (...args) => (x) => args.reduce(reducer, [x]).pop();
+
+const composeServerlessFn = (fns, endpoint, service) => {
+  const varName = `${service.name}_${endpoint.name}`;
+  const handler = `dist/handler.${varName}`;
+  const concatPaths = (sel) => path.join(service.path, sel);
+  fns[varName] = compose(
+    destructEndpoint({ keys: ['integration', 'name', 'path'] }),
+    updateProperty({ key: 'path' }, concatPaths),
+    createFunction(handler),
+  )(endpoint);
+};
+
+const addToTemplate = (tpl, endpoint, service) => {
+  const varName = `${service.name}_${endpoint.name}`;
+  const value = `app.services.${service.name}.${endpoint.functionName}`;
+  tpl.push(`export const ${varName} = ${value};\n`);
+};
+
 class Serverless {
   public hooks: any = {};
 
@@ -53,65 +92,18 @@ class Serverless {
 
     try {
       const req = path.join(servicePath, artifactsPath);
-      debug('requiring: ', req);
-
       const serviceInstances: any = require(req).services;
-      debug('serviceInstances: ', serviceInstances);
+      const serviceNames = Object.keys(serviceInstances);
 
-      for (const serviceName of Object.keys(serviceInstances)) {
-        debug('serviceName: ', serviceName);
-        const service = serviceInstances[serviceName];
-        debug('service:', service[ENDPOINT_SYMBOL]);
+      serviceNames.map((name) => {
+        const service = serviceInstances[name];
         const serviceDescription = service[ENDPOINT_SYMBOL];
-        debug('serviceDescription', serviceDescription);
         const endpoints = service[LAMBDA_SYMBOL];
-        debug('endpoints', endpoints);
-
-        debug('adding functions');
-
-        const destructEndpoint = ({ keys }: { keys: [string] }) => (endpoint) => {
-          const reducer = (accumulator, key) => {
-            accumulator[key] = endpoint[key];
-            return accumulator;
-          };
-          return keys.reduce(reducer, {});
-        };
-
-        const updateProperty = ({ key }, fn) => (obj) =>
-          Object.assign(obj, { [key]: fn(obj[key]) });
-
-        const createFunction = (handlerName) => (obj) => {
-          return {
-            events: [obj],
-            handler: handlerName,
-          };
-        };
-
-        const reducer = (accumulator, fn) => accumulator.map(fn);
-
-        const compose = (...args) => (x) => args.reduce(reducer, [x]).pop();
-
-        const composeServerlessFn = (fns, endpoint, serviceDescription) => {
-          const varName = `${serviceDescription.name}_${endpoint.name}`;
-          const handlerName = `dist/handler.${varName}`;
-          fns[varName] = compose(
-            destructEndpoint({ keys: ['integration', 'name', 'path'] }),
-            updateProperty({ key: 'path' }, (sel) =>
-              path.join(serviceDescription.path, sel),
-            ),
-            createFunction(handlerName),
-          )(endpoint);
-        };
-
         endpoints.map((endpoint) => {
           composeServerlessFn(functions, endpoint, serviceDescription);
-          const varName = `${serviceDescription.name}_${endpoint.name}`;
-          const value = `app.services.${serviceDescription.name}.${
-            endpoint.functionName
-            }`;
-          handlerjs.push(`export const ${varName} = ${value};\n`);
+          addToTemplate(handlerjs, endpoint, serviceDescription);
         });
-      }
+      });
 
       try {
         fs.unlinkSync(path.join(servicePath, 'handler.ts'));
