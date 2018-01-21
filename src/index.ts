@@ -1,11 +1,8 @@
 import * as fs from 'fs';
-import * as Debug from 'debug';
 import * as path from 'path';
 import tsSimpleAst from 'ts-simple-ast';
 import * as ts from 'typescript';
 import { ENDPOINT_SYMBOL, LAMBDA_SYMBOL } from './decorators/lambda';
-
-const debug = Debug('sls-plugin');
 
 // const d = Debug('auto-conf');
 
@@ -57,12 +54,6 @@ class Serverless {
   public hooks: any = {};
 
   constructor(serverless: any, options: any) {
-    // debug('serverless', serverless.pluginManager);
-    debug('initing plugin');
-
-    debug('hooks');
-
-    debug(serverless.hooks);
     // define sls hooks
     this.hooks = {
       'before:package:initialize': () => {
@@ -70,7 +61,6 @@ class Serverless {
           // prettier-ignore
           setTimeout(
             () => {
-              debug('This runs before packaging');
               res(true);
             },
             2000);
@@ -91,12 +81,9 @@ class Serverless {
     ];
 
     const servicePath = serverless.config.servicePath;
-    debug('servicePath:', servicePath);
 
     // const services = serverless.service.custom.services;
     const artifactsPath = serverless.service.custom.artifactsFolder;
-    debug('articafacts folder', artifactsPath);
-    debug('cwd', __dirname);
 
     const functions = serverless.service.functions;
 
@@ -126,9 +113,6 @@ class Serverless {
       );
 
       sourceFile.saveSync();
-      debug('handler.ts saved');
-      debug('final configuration: functions list');
-      debug(functions);
     } catch (e) {
       console.log('error', e);
     }
