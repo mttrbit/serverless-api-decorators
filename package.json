@@ -1,6 +1,6 @@
 {
   "name": "sls-api-decorators-plugin",
-  "version": "0.0.3-rc.1",
+  "version": "0.0.3-rc.5",
   "description": "serveless plugin to write lambda functions in typescript making use of IoC technics to reduce coding effort",
   "license": "MIT",
   "repository": "https://github.com/mttrbit/serverless-api-decorators",
@@ -26,7 +26,9 @@
     "watch:test": "npm run test -- --watch",
     "release": "standard-version"
   },
-  "dependencies": {},
+  "dependencies": {
+    "tslint-config-prettier": "^1.6.0"
+  },
   "peerDependencies": {},
   "devDependencies": {
     "@types/aws-lambda": "0.0.14",

@@ -2,7 +2,7 @@ import * as Debug from 'debug';
 
 const $log = Debug('annotations');
 
-export const entity = (target: any) => {
+export const entity = (target) => {
   $log('running Entity decorator:', target);
 
   return (...args: any[]) => {
@@ -10,7 +10,7 @@ export const entity = (target: any) => {
   };
 };
 
-export const field = (target?: any) => {
+export const field = (target) => {
   $log('running Field decorator:', target);
 
   return (...args: any[]) => {

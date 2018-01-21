@@ -22,11 +22,9 @@ export const registerSingleton = (target: any) => {
 };
 
 export const getSingleton = (name: string) => {
-
   d('retrieving singleton:', singletons);
 
   return (singletons as any)[name];
-
 };
 
 export const getServices = () => {

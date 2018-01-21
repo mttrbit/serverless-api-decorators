@@ -11,7 +11,7 @@ const getPathParam = (event, arg) => {
   return pathParamExists ? event.path[arg] : undefined;
 };
 
-const extractArgs = (event) => {
+const extractArgs = event => {
   return (arg: any) => {
     debug('parsing arg for injection:', arg);
     if (arg === 'event') return event;

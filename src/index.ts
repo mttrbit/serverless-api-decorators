@@ -9,12 +9,12 @@ const debug = Debug('sls-plugin');
 
 // const d = Debug('auto-conf');
 
-const delay = (time) => new Promise((resolve) => setTimeout(resolve, time));
+const delay = time => new Promise(resolve => setTimeout(resolve, time));
 
 const until = (cond, time) =>
-  cond().then((result) => result || delay(time).then(() => until(cond, time)));
+  cond().then(result => result || delay(time).then(() => until(cond, time)));
 
-const destructEndpoint = ({ keys }: { keys: [string] }) => (endpoint) => {
+const destructEndpoint = ({ keys }: { keys: [string] }) => endpoint => {
   const reducer = (accumulator, key) => {
     accumulator[key] = endpoint[key];
     return accumulator;
@@ -22,26 +22,26 @@ const destructEndpoint = ({ keys }: { keys: [string] }) => (endpoint) => {
   return keys.reduce(reducer, {});
 };
 
-const updateProperty = ({ key }, fn) => (obj) =>
+const updateProperty = ({ key }, fn) => obj =>
   Object.assign(obj, { [key]: fn(obj[key]) });
 
-const createFunction = (handlerName) => (obj) => {
+const createFunction = handlerName => obj => {
   return {
-    events: [obj],
+    events: [{ http: obj }],
     handler: handlerName,
   };
 };
 
 const reducer = (accumulator, fn) => accumulator.map(fn);
 
-const compose = (...args) => (x) => args.reduce(reducer, [x]).pop();
+const compose = (...args) => x => args.reduce(reducer, [x]).pop();
 
 const composeServerlessFn = (fns, endpoint, service) => {
   const varName = `${service.name}_${endpoint.name}`;
   const handler = `dist/handler.${varName}`;
-  const concatPaths = (sel) => path.join(service.path, sel);
+  const concatPaths = sel => path.join(service.path, sel);
   fns[varName] = compose(
-    destructEndpoint({ keys: ['integration', 'name', 'path'] }),
+    destructEndpoint({ keys: ['integration', 'path', 'method'] }),
     updateProperty({ key: 'path' }, concatPaths),
     createFunction(handler),
   )(endpoint);
@@ -65,8 +65,17 @@ class Serverless {
     debug(serverless.hooks);
     // define sls hooks
     this.hooks = {
-      'before:package:initialize': () =>
-        delay(2000).then((res: any) => res(true)),
+      'before:package:initialize': () => {
+        return new Promise((res: any, rej: any) => {
+          // prettier-ignore
+          setTimeout(
+            () => {
+              debug('This runs before packaging');
+              res(true);
+            },
+            2000);
+        });
+      },
     };
 
     const ast = new tsSimpleAst({
@@ -76,6 +85,7 @@ class Serverless {
     });
 
     const handlerjs = [
+      '/* tslint:disable */\n',
       `import { App } from './api/app';\n`,
       'const app = new App();\n',
     ];
@@ -95,22 +105,23 @@ class Serverless {
       const serviceInstances: any = require(req).services;
       const serviceNames = Object.keys(serviceInstances);
 
-      serviceNames.map((name) => {
+      serviceNames.map(name => {
         const service = serviceInstances[name];
         const serviceDescription = service[ENDPOINT_SYMBOL];
         const endpoints = service[LAMBDA_SYMBOL];
-        endpoints.map((endpoint) => {
+        endpoints.map(endpoint => {
           composeServerlessFn(functions, endpoint, serviceDescription);
           addToTemplate(handlerjs, endpoint, serviceDescription);
         });
       });
-
+      const pathToHandler =
+        serverless.service.custom.servicePath || servicePath;
       try {
-        fs.unlinkSync(path.join(servicePath, 'handler.ts'));
+        fs.unlinkSync(path.join(pathToHandler, 'handler.ts'));
       } catch (e) { }
 
       const sourceFile = ast.createSourceFile(
-        path.join(servicePath, 'handler.ts'),
+        path.join(pathToHandler, 'handler.ts'),
         handlerjs.join(''),
       );
 
