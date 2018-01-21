@@ -1,35 +1,18 @@
-import * as Debug from 'debug';
-
-const d = Debug('DI');
-
 const singletons: object = {};
 
 export const registerSingleton = (target: any) => {
-  d('registering singleton:', target);
-
-  const className = target.name;
-  d('classname: ', className);
+  // const className = target.name;
 
   const serviceSymbol = '__service__';
   const serviceName = target.prototype[serviceSymbol].name;
 
-  d('serviceName: ', serviceName);
-
   // should implement lazy loading
   (singletons as any)[serviceName] = new target();
-
-  d('singletons', singletons);
 };
 
-export const getSingleton = (name: string) => {
-  d('retrieving singleton:', singletons);
+export const getSingleton = (name: string) => (singletons as any)[name];
 
-  return (singletons as any)[name];
-};
-
-export const getServices = () => {
-  return singletons;
-};
+export const getServices = () => singletons;
 
 // export class DIManager {
 //
