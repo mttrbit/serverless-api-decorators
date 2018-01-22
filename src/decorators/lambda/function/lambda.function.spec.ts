@@ -34,7 +34,7 @@ const promisify = (service: object, functionName: string, event, context) =>
   new Promise((resolve, reject) => {
     (service as any)[functionName].apply(functionName, [
       {},
-      {},
+      context,
       (err, resp) => {
         if (err) reject(err);
         else resolve(resp);
@@ -43,13 +43,13 @@ const promisify = (service: object, functionName: string, event, context) =>
   });
 
 describe('decorators', () => {
-  it('test function', (done) => {
-    promisify(new TestService(), 'testMethod', {}, {})
-      .then((resp) => {
+  it('test function', done => {
+    promisify(new TestService(), 'testMethod', {}, { functionName: 'foo' })
+      .then(resp => {
         expect(resp).to.be.eql('abc');
         done();
       })
-      .catch((err) => {
+      .catch(err => {
         done(err);
       });
   });

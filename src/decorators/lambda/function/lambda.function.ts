@@ -17,6 +17,40 @@ const extractArgs = event => {
   };
 };
 
+/**
+ * Defines the type of the handler passed by the service.
+ * The parameter callback represents the original callback
+ * passed from AWS to the service
+ */
+export type ServiceHandler = (
+  event, // an AWS event
+  context, // the corresponding index
+  callback, // AWS callback
+) => void;
+
+const proxiedHandler = (handler: ServiceHandler) =>
+  handle(handler, {
+    onBefore: (event, context) => {
+      context.log.info({ event }, 'processing event');
+    },
+    onAfter: (result, event, context) => {
+      context.log.info({ result }, 'event processed');
+      return result;
+    },
+    onError: (error, event, context) => {
+      context.log.error({ err: error }, 'error occurred');
+      return {
+        statusCode: error.httpStatus,
+        body: JSON.stringify({
+          name: error.name,
+          message: error.message,
+          errorType: error.name,
+          errors: error.errors,
+        }),
+      };
+    },
+  });
+
 export const lambdaFunction = (config: LambdaFunctionConfig) => {
   return (target: any, key: string, descriptor: PropertyDescriptor) => {
     const targetProto = target.constructor.prototype;
@@ -32,7 +66,7 @@ export const lambdaFunction = (config: LambdaFunctionConfig) => {
     // see:
     // https://stackoverflow.com/questions/36446480/
     // typescript-decorator-reports-unable-to-resolve-signature-of-class-decorator-whe
-    return <any>(target[key] = handle((event, context, callback) => {
+    return <any>(target[key] = proxiedHandler((event, context, callback) => {
       const targetArgs = annotate(targetFunction);
       // function should only handle the event and resolve, reject of a promise
       const promise = new Promise((resolve, reject) => {
