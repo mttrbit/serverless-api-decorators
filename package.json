@@ -28,11 +28,12 @@
     "release": "yarn reset && yarn test && yarn changelog",
     "reset": "git clean -dfx && git reset --hard && yarn"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@mttrbit/lambda-handler": "^1.0.2",
+    "@types/aws-lambda": "0.0.14"
+  },
   "peerDependencies": {},
   "devDependencies": {
-    "@mttrbit/lambda-handler": "^1.0.2",
-    "@types/aws-lambda": "0.0.14",
     "@types/chai": "^3.5.2",
     "@types/debug": "0.0.29",
     "@types/mocha": "^2.2.41",
