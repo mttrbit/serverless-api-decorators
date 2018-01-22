@@ -1,6 +1,6 @@
 {
-  "name": "sls-api-decorators-plugin",
-  "version": "0.0.3-rc.5",
+  "name": "@mttrbit/sls-api-decorators",
+  "version": "0.0.1",
   "description": "serveless plugin to write lambda functions in typescript making use of IoC technics to reduce coding effort",
   "license": "MIT",
   "repository": "https://github.com/mttrbit/serverless-api-decorators",
@@ -24,12 +24,14 @@
     "coverage": "nyc --include='src/**/*.ts' --reporter=text --reporter=html --reporter=lcov mocha --compilers ts:ts-node/register --recursive 'test/**/*.test.ts'",
     "watch": "npm run build -- --watch",
     "watch:test": "npm run test -- --watch",
-    "release": "standard-version"
+    "changelog": "standard-version",
+    "release": "yarn reset && yarn test && yarn changelog",
+    "reset": "git clean -dfx && git reset --hard && yarn"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "peerDependencies": {},
   "devDependencies": {
+    "@mttrbit/lambda-handler": "^1.0.2",
     "@types/aws-lambda": "0.0.14",
     "@types/chai": "^3.5.2",
     "@types/debug": "0.0.29",
@@ -44,11 +46,11 @@
     "rimraf": "^2.6.1",
     "source-map-support": "^0.5.0",
     "standard-version": "^4.2.0",
-    "tslint-config-prettier": "^1.6.0",
     "ts-node": "^4.0.2",
     "ts-simple-ast": "^4.1.0",
     "tslint": "^5.8.0",
     "tslint-config-airbnb": "^5.4.2",
+    "tslint-config-prettier": "^1.6.0",
     "typescript": "^2.6.2"
   },
   "engines": {

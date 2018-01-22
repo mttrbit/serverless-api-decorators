@@ -1,15 +1,17 @@
-export const ensure = (f: ((val: any) => any)) => (
-  target: object,
-  propertyKey: string,
-) => {
+export const ensure = (
+  f: ((val: any) => any),
+  err: ((val?: any) => any) = key =>
+    new Error(`${key} must satisfy precondition.`),
+) => (target: object, propertyKey: string) => {
   let val = this[propertyKey];
 
   const get = () => val;
-  const set = (newVal) => {
-    if (!f(newVal)) {
-      throw new Error(`${propertyKey} must satisfy precondition.`);
+  const set = newVal => {
+    if (f(newVal)) {
+      val = newVal;
+    } else {
+      throw err(propertyKey);
     }
-    val = newVal;
   };
 
   Object.defineProperty(target, propertyKey, { get, set });

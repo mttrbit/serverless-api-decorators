@@ -6,3 +6,8 @@ npm-debug.log
 .nyc_output
 dist/
 example/handler.ts
+*.log
+*.link
+package-lock.json
+anschreiben-pdf-generator
+example
