@@ -1564,7 +1564,7 @@ mem@^1.1.0:
   dependencies:
     mimic-fn "^1.0.0"
 
-meow@^3.3.0:
+meow@^3.3.0, meow@^3.7.0:
   version "3.7.0"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/meow/-/meow-3.7.0.tgz#72cb668b425228290abbfa856892587308a801fb"
   dependencies:
@@ -1709,6 +1709,14 @@ npm-run-path@^2.0.0:
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/npm-run-path/-/npm-run-path-2.0.2.tgz#35a9232dfa35d7067b4cb2ddf2357b1871536c5f"
   dependencies:
     path-key "^2.0.0"
+
+npm-scripts-info@^0.3.6:
+  version "0.3.6"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/npm-scripts-info/-/npm-scripts-info-0.3.6.tgz#14e7c78c1288bd6d82078769c7aa9583fc413c03"
+  dependencies:
+    chalk "^1.1.1"
+    meow "^3.7.0"
+    unquote "^1.1.0"
 
 null-check@^1.0.0:
   version "1.0.0"
@@ -2457,6 +2465,10 @@ uglify-to-browserify@~1.0.0:
 universalify@^0.1.0:
   version "0.1.1"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/universalify/-/universalify-0.1.1.tgz#fa71badd4437af4c148841e3b3b165f9e9e590b7"
+
+unquote@^1.1.0:
+  version "1.1.1"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/unquote/-/unquote-1.1.1.tgz#8fded7324ec6e88a0ff8b905e7c098cdc086d544"
 
 user-home@^1.1.1:
   version "1.1.1"

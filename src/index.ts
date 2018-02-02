@@ -97,6 +97,7 @@ class Serverless {
         const serviceDescription = service[ENDPOINT_SYMBOL];
         const endpoints = service[LAMBDA_SYMBOL];
         endpoints.map(endpoint => {
+          console.log(endpoint);
           composeServerlessFn(functions, endpoint, serviceDescription);
           addToTemplate(handlerjs, endpoint, serviceDescription);
         });
