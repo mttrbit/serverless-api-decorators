@@ -5,6 +5,12 @@ import * as ts from 'typescript';
 import { ENDPOINT_SYMBOL, LAMBDA_SYMBOL } from './decorators/lambda';
 
 // const d = Debug('auto-conf');
+const wait = t => (res, rej) => (res, t) =>
+  setTimeout(() => {
+    res(true);
+  }, t);
+
+const promisify = f => new Promise(f);
 
 const delay = time => new Promise(resolve => setTimeout(resolve, time));
 
@@ -55,16 +61,10 @@ class Serverless {
 
   constructor(serverless: any, options: any) {
     // define sls hooks
+
     this.hooks = {
       'before:package:initialize': () => {
-        return new Promise((res: any, rej: any) => {
-          // prettier-ignore
-          setTimeout(
-            () => {
-              res(true);
-            },
-            2000);
-        });
+        return promisify(wait(2000));
       },
     };
 

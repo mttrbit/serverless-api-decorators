@@ -8,7 +8,7 @@ export const api = config => {
       // create a new instance of App class and store it in DI for future ref
       DI,
       services: DI.getServices(),
-      factories: DI.getFactories(),
+      // factories: DI.getFactories(),
     };
     // instantiate Factories and Services
   };
