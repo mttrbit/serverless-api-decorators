@@ -20,7 +20,7 @@
     "link:copy": "cp ./package.json.link ./dist/package.json",
     "link:link": "npm run link:copy && npm link ./dist",
     "unlink:unlink": "npm unlink ./dist",
-    "build": "npm run clean && echo Using TypeScript && tsc --version && tsc --pretty && npm run link:link",
+    "build": "npm run clean && echo Using TypeScript && tsc --version && tsc && npm run link:link",
     "test": "npm run build && npm run lint && mocha --compilers ts:ts-node/register --recursive 'src/**/*.spec.ts'",
     "coverage": "nyc --include='src/**/*.ts' --reporter=text --reporter=html --reporter=lcov mocha --compilers ts:ts-node/register --recursive 'test/**/*.test.ts'",
     "watch": "npm run build -- --watch",

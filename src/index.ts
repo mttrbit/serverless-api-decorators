@@ -4,25 +4,12 @@ import tsSimpleAst from 'ts-simple-ast';
 import * as ts from 'typescript';
 import { ENDPOINT_SYMBOL, LAMBDA_SYMBOL } from './decorators/lambda';
 
+import { wait, promisify, trace, pipe, tap } from './fun';
+
 // const d = Debug('auto-conf');
-const wait = t => (res, rej) => (res, t) =>
-  setTimeout(() => {
-    res(true);
-  }, t);
-
-const promisify = f => new Promise(f);
-
-const delay = time => new Promise(resolve => setTimeout(resolve, time));
-
-const until = (cond, time) =>
-  cond().then(result => result || delay(time).then(() => until(cond, time)));
-
 const destructEndpoint = ({ keys }: { keys: [string] }) => endpoint => {
-  const reducer = (accumulator, key) => {
-    accumulator[key] = endpoint[key];
-    return accumulator;
-  };
-  return keys.reduce(reducer, {});
+  const assign = key => tap(acc => (acc[key] = endpoint[key]));
+  return keys.reduce((acc, key) => assign(key)(acc), {});
 };
 
 const updateProperty = ({ key }, fn) => obj =>
@@ -35,18 +22,17 @@ const createFunction = handlerName => obj => {
   };
 };
 
-const reducer = (accumulator, fn) => accumulator.map(fn);
-
-const compose = (...args) => x => args.reduce(reducer, [x]).pop();
-
 const composeServerlessFn = (fns, endpoint, service) => {
   const varName = `${service.name}_${endpoint.name}`;
   const handler = `dist/handler.${varName}`;
   const concatPaths = sel => path.join(service.path, sel);
-  fns[varName] = compose(
+  fns[varName] = pipe(
+    trace('start composing'),
     destructEndpoint({ keys: ['integration', 'path', 'method'] }),
+    trace('after destructering'),
     updateProperty({ key: 'path' }, concatPaths),
     createFunction(handler),
+    trace('end composing'),
   )(endpoint);
 };
 
@@ -97,7 +83,6 @@ class Serverless {
         const serviceDescription = service[ENDPOINT_SYMBOL];
         const endpoints = service[LAMBDA_SYMBOL];
         endpoints.map(endpoint => {
-          console.log(endpoint);
           composeServerlessFn(functions, endpoint, serviceDescription);
           addToTemplate(handlerjs, endpoint, serviceDescription);
         });
