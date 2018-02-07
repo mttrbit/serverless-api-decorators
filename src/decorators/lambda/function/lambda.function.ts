@@ -79,12 +79,7 @@ export const lambdaFunction = (config: LambdaFunctionConfig) => {
       const promise = new Promise((resolve, reject) => {
         try {
           const args = targetArgs.map(extractArgs(event));
-          let response = targetFunction.apply(target, args);
-          if (event.hasOwnProperty('headers')) {
-            if (event['headers']['X-MIDDLEWARE-TYPE'] === 'mw/backbase-forms') {
-              response = { data: response };
-            }
-          }
+          const response = targetFunction.apply(target, args);
           resolve(response);
         } catch (e) {
           // in development mode we always want to resolve
@@ -101,6 +96,12 @@ export const lambdaFunction = (config: LambdaFunctionConfig) => {
       });
 
       promise.then((response: any) => {
+        if (
+          event.hasOwnProperty['headers'] &&
+          event['headers']['X-MIDDLEWARE-TYPE'] === 'mw/backbase-forms'
+        ) {
+          response = { data: response };
+        }
         callback(null, response);
       });
 
