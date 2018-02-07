@@ -4,11 +4,11 @@ import tsSimpleAst from 'ts-simple-ast';
 import * as ts from 'typescript';
 import { ENDPOINT_SYMBOL, LAMBDA_SYMBOL } from './decorators/lambda';
 
-import { wait, promisify, trace, pipe, tap } from './fun';
+import { fun as f, utils as u } from '@mttrbit/fun';
 
 // const d = Debug('auto-conf');
 const destructEndpoint = ({ keys }: { keys: [string] }) => endpoint => {
-  const assign = key => tap(acc => (acc[key] = endpoint[key]));
+  const assign = key => f.tap(acc => (acc[key] = endpoint[key]));
   return keys.reduce((acc, key) => assign(key)(acc), {});
 };
 
@@ -22,21 +22,18 @@ const createFunction = handlerName => obj => {
   };
 };
 
-const composeServerlessFn = (fns, endpoint, service) => {
+const composeServerlessFn = (fns, service) => endpoint => {
   const varName = `${service.name}_${endpoint.name}`;
   const handler = `dist/handler.${varName}`;
   const concatPaths = sel => path.join(service.path, sel);
-  fns[varName] = pipe(
-    trace('start composing'),
+  fns[varName] = f.pipe(
     destructEndpoint({ keys: ['integration', 'path', 'method'] }),
-    trace('after destructering'),
     updateProperty({ key: 'path' }, concatPaths),
     createFunction(handler),
-    trace('end composing'),
   )(endpoint);
 };
 
-const addToTemplate = (tpl, endpoint, service) => {
+const addToTemplate = (tpl, service) => endpoint => {
   const varName = `${service.name}_${endpoint.name}`;
   const value = `app.services.${service.name}.${endpoint.functionName}`;
   tpl.push(`export const ${varName} = ${value};\n`);
@@ -50,7 +47,7 @@ class Serverless {
 
     this.hooks = {
       'before:package:initialize': () => {
-        return promisify(wait(2000));
+        return new Promise(u.wait(2000));
       },
     };
 
@@ -82,10 +79,14 @@ class Serverless {
         const service = serviceInstances[name];
         const serviceDescription = service[ENDPOINT_SYMBOL];
         const endpoints = service[LAMBDA_SYMBOL];
-        endpoints.map(endpoint => {
-          composeServerlessFn(functions, endpoint, serviceDescription);
-          addToTemplate(handlerjs, endpoint, serviceDescription);
-        });
+        f.pipe(
+          f.map(
+            f.fmap(
+              composeServerlessFn(functions, serviceDescription),
+              addToTemplate(handlerjs, serviceDescription),
+            ),
+          ),
+        )(endpoints);
       });
       const pathToHandler =
         serverless.service.custom.servicePath || servicePath;

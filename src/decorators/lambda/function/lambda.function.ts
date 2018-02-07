@@ -35,6 +35,7 @@ const proxiedHandler = (handler: ServiceHandler) =>
     },
     onAfter: (result, event, context) => {
       context.log.info({ result }, 'event processed');
+      if (result.hasOwnProperty('options')) delete result.options;
       return result;
     },
     onError: (error, event, context) => {

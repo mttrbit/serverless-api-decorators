@@ -13,6 +13,12 @@
     bunyan-prettystream "^0.1.3"
     lodash "^4.17.4"
 
+"@mttrbit/fun@^0.0.3":
+  version "0.0.3"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/@mttrbit/fun/-/@mttrbit/fun-0.0.3.tgz#ab503fc2f76fa64d2ed4d3bad4398b01632675c1"
+  dependencies:
+    js-object-pretty-print "^0.3.0"
+
 "@mttrbit/lambda-handler@^1.0.2":
   version "1.0.2"
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/@mttrbit/lambda-handler/-/@mttrbit/lambda-handler-1.0.2.tgz#086cc4698fedcec3038c7a616e0b042fd9ae39c5"
@@ -1337,6 +1343,10 @@ istanbul-reports@^1.1.0:
   resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/istanbul-reports/-/istanbul-reports-1.1.1.tgz#042be5c89e175bc3f86523caab29c014e77fee4e"
   dependencies:
     handlebars "^4.0.3"
+
+js-object-pretty-print@^0.3.0:
+  version "0.3.0"
+  resolved "https://digitalunitfs.jfrog.io/digitalunitfs/api/npm/fi-npm/js-object-pretty-print/-/js-object-pretty-print-0.3.0.tgz#4670e450066ee1eccf35174c7d197f5aa38bcf74"
 
 js-tokens@^3.0.0:
   version "3.0.2"
