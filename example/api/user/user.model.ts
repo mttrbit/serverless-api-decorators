@@ -5,13 +5,13 @@ import { entity, field } from 'sls-api-decorators/models';
   storage: 'DynamoDB',
 })
 export class User {
-  @field()
+  @field(null)
   public id: string;
 
-  @field()
+  @field(null)
   public name: string;
 
-  @field()
+  @field(null)
   public email: string;
 
   constructor() { }

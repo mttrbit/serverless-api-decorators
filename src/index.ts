@@ -4,19 +4,11 @@ import tsSimpleAst from 'ts-simple-ast';
 import * as ts from 'typescript';
 import { ENDPOINT_SYMBOL, LAMBDA_SYMBOL } from './decorators/lambda';
 
-// const d = Debug('auto-conf');
+import { fun as f, utils as u } from '@mttrbit/fun';
 
-const delay = time => new Promise(resolve => setTimeout(resolve, time));
-
-const until = (cond, time) =>
-  cond().then(result => result || delay(time).then(() => until(cond, time)));
-
-const destructEndpoint = ({ keys }: { keys: [string] }) => endpoint => {
-  const reducer = (accumulator, key) => {
-    accumulator[key] = endpoint[key];
-    return accumulator;
-  };
-  return keys.reduce(reducer, {});
+const destructEndpoint = ({ keys }) => endpoint => {
+  const assign = key => f.tap(acc => (acc[key] = endpoint[key]));
+  return keys.reduce((acc, key) => assign(key)(acc), {});
 };
 
 const updateProperty = ({ key }, fn) => obj =>
@@ -29,22 +21,18 @@ const createFunction = handlerName => obj => {
   };
 };
 
-const reducer = (accumulator, fn) => accumulator.map(fn);
-
-const compose = (...args) => x => args.reduce(reducer, [x]).pop();
-
-const composeServerlessFn = (fns, endpoint, service) => {
+const composeServerlessFn = (fns, service) => endpoint => {
   const varName = `${service.name}_${endpoint.name}`;
   const handler = `dist/handler.${varName}`;
   const concatPaths = sel => path.join(service.path, sel);
-  fns[varName] = compose(
+  fns[varName] = f.pipe(
     destructEndpoint({ keys: ['integration', 'path', 'method'] }),
     updateProperty({ key: 'path' }, concatPaths),
     createFunction(handler),
   )(endpoint);
 };
 
-const addToTemplate = (tpl, endpoint, service) => {
+const addToTemplate = (tpl, service) => endpoint => {
   const varName = `${service.name}_${endpoint.name}`;
   const value = `app.services.${service.name}.${endpoint.functionName}`;
   tpl.push(`export const ${varName} = ${value};\n`);
@@ -55,22 +43,16 @@ class Serverless {
 
   constructor(serverless: any, options: any) {
     // define sls hooks
+
     this.hooks = {
       'before:package:initialize': () => {
-        return new Promise((res: any, rej: any) => {
-          // prettier-ignore
-          setTimeout(
-            () => {
-              res(true);
-            },
-            2000);
-        });
+        return new Promise(u.wait(2000));
       },
     };
 
     const ast = new tsSimpleAst({
       compilerOptions: {
-        target: ts.ScriptTarget.ES2016,
+        target: ts.ScriptTarget.ES5,
       },
     });
 
@@ -96,10 +78,14 @@ class Serverless {
         const service = serviceInstances[name];
         const serviceDescription = service[ENDPOINT_SYMBOL];
         const endpoints = service[LAMBDA_SYMBOL];
-        endpoints.map(endpoint => {
-          composeServerlessFn(functions, endpoint, serviceDescription);
-          addToTemplate(handlerjs, endpoint, serviceDescription);
-        });
+        f.pipe(
+          f.map(
+            f.fmap(
+              composeServerlessFn(functions, serviceDescription),
+              addToTemplate(handlerjs, serviceDescription),
+            ),
+          ),
+        )(endpoints);
       });
       const pathToHandler =
         serverless.service.custom.servicePath || servicePath;
