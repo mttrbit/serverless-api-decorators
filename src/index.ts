@@ -7,7 +7,7 @@ import { ENDPOINT_SYMBOL, LAMBDA_SYMBOL } from './decorators/lambda';
 import { fun as f, utils as u } from '@mttrbit/fun';
 
 // const d = Debug('auto-conf');
-const destructEndpoint = ({ keys }: { keys: [string] }) => endpoint => {
+const destructEndpoint = ({ keys }: { keys: string[] }) => endpoint => {
   const assign = key => f.tap(acc => (acc[key] = endpoint[key]));
   return keys.reduce((acc, key) => assign(key)(acc), {});
 };
