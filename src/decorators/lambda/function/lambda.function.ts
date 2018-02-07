@@ -97,7 +97,7 @@ export const lambdaFunction = (config: LambdaFunctionConfig) => {
 
       promise.then((response: any) => {
         if (
-          event.hasOwnProperty['headers'] &&
+          event['headers'] !== undefined &&
           event['headers']['X-MIDDLEWARE-TYPE'] === 'mw/backbase-forms'
         ) {
           response = { data: response };
