@@ -79,7 +79,12 @@ export const lambdaFunction = (config: LambdaFunctionConfig) => {
       const promise = new Promise((resolve, reject) => {
         try {
           const args = targetArgs.map(extractArgs(event));
-          const response = targetFunction.apply(target, args);
+          let response = targetFunction.apply(target, args);
+          if (event.hasOwnProperty('headers')) {
+            if (event['headers']['X-MIDDLEWARE-TYPE'] === 'mw/backbase-forms') {
+              response = { data: response };
+            }
+          }
           resolve(response);
         } catch (e) {
           // in development mode we always want to resolve
