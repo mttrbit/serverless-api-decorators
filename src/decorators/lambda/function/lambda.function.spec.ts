@@ -74,6 +74,7 @@ describe('decorators', () => {
         method: 'get',
         name: 'test',
         path: '/',
+        resolveWithFullResponse: false,
       },
     ]);
   });
