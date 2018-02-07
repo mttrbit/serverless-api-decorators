@@ -5,7 +5,14 @@ export const createConfig = ({
   path = '/',
   method = undefined,
   integration = undefined,
-}): LambdaFunctionConfig => ({ name, path, method, integration });
+  resolveWithFullResponse = false,
+}): LambdaFunctionConfig => ({
+  name,
+  path,
+  method,
+  integration,
+  resolveWithFullResponse,
+});
 
 export const createDecoratedConfig = ({ config, key }): LambdaFunctionConfig => ({
   integration: config.integration || 'lambda',
@@ -13,5 +20,6 @@ export const createDecoratedConfig = ({ config, key }): LambdaFunctionConfig => 
   path: config.path,
   // setting real function name
   functionName: key,
+  resolveWithFullResponse: config.resolveWithFullResponse || false,
   name: config.name ? config.name : key,
 });

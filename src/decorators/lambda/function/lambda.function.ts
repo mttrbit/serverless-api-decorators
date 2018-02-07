@@ -28,14 +28,20 @@ export type ServiceHandler = (
   callback, // AWS callback
 ) => void;
 
-const proxiedHandler = (handler: ServiceHandler) =>
+const proxiedHandler = (
+  handler: ServiceHandler,
+  config: LambdaFunctionConfig,
+) =>
   handle(handler, {
     onBefore: (event, context) => {
       context.log.info({ event }, 'processing event');
     },
     onAfter: (result, event, context) => {
       context.log.info({ result }, 'event processed');
-      if (result.hasOwnProperty('options')) delete result.options;
+      if (!config.resolveWithFullResponse) {
+        if (result.hasOwnProperty('options')) delete result.options;
+        if (result.hasOwnProperty('response')) delete result.response;
+      }
       return result;
     },
     onError: (error, event, context) => {
@@ -98,7 +104,7 @@ export const lambdaFunction = (config: LambdaFunctionConfig) => {
         // cb(err);
         callback(null, err);
       });
-    }));
+    }, config));
   };
 };
 
