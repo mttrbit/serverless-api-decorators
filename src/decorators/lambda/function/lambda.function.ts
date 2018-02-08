@@ -2,6 +2,7 @@ import { LAMBDA_SYMBOL } from '../symbols';
 import { LambdaFunctionConfig } from './types';
 import { createDecoratedConfig } from './factories';
 import { handle } from '@mttrbit/lambda-handler';
+import { backbasify } from '../../../utils';
 
 const getPathParam = (event, arg) => {
   // const pathParamExists = event && event.path && event.path.hasOwnProperty(arg);
@@ -119,14 +120,13 @@ export const lambdaFunction = (config: LambdaFunctionConfig) => {
           event['headers'] &&
           event['headers']['x-middleware-type'] === 'mw/backbase-forms'
         ) {
-          response = { data: response };
+          response = { data: backbasify(response) };
         }
         callback(null, response);
       });
       promise.catch((err: any) => {
         // same as comment above
         // cb(err);
-        console.log('ERROR');
         callback(err);
         // callback(null, err);
       });
