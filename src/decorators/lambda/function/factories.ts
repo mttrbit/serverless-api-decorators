@@ -18,6 +18,7 @@ export const createDecoratedConfig = ({ config, key }): LambdaFunctionConfig => 
   integration: config.integration || 'lambda',
   method: config.method || 'get',
   path: config.path,
+  cors: config.cors || true,
   // setting real function name
   functionName: key,
   resolveWithFullResponse: config.resolveWithFullResponse || false,
