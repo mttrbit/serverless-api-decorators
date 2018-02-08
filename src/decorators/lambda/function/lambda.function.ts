@@ -53,7 +53,10 @@ const proxiedHandler = (handler: ServiceHandler) =>
         return {
           statusCode: 200,
           headers: {},
-          body: JSON.stringify(result),
+          body:
+            Object.prototype.toString.call(result) === '[object String]'
+              ? result
+              : JSON.stringify(result),
           isBase64Encoded: false,
         };
       }

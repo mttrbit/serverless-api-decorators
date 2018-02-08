@@ -46,7 +46,7 @@ describe('decorators', () => {
   it('test function', done => {
     promisify(new TestService(), 'testMethod', {}, { functionName: 'foo' })
       .then(resp => {
-        expect(resp).to.be.eql('abc');
+        expect(resp.body).to.be.eql('abc');
         done();
       })
       .catch(err => {
