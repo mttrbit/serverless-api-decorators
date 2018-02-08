@@ -38,10 +38,10 @@ const proxiedHandler = (
     },
     onAfter: (result, event, context) => {
       context.log.info({ result }, 'event processed');
-      if (!config.resolveWithFullResponse) {
-        if (result.hasOwnProperty('options')) delete result.options;
-        if (result.hasOwnProperty('response')) delete result.response;
-      }
+      // if (!config.resolveWithFullResponse) {
+      // if (result.hasOwnProperty('options')) delete result.options;
+      // if (result.hasOwnProperty('response')) delete result.response;
+      // }
       return result;
     },
     onError: (error, event, context) => {
@@ -98,7 +98,7 @@ export const lambdaFunction = (config: LambdaFunctionConfig) => {
       promise.then((response: any) => {
         if (
           event['headers'] !== undefined &&
-          event['headers']['X-MIDDLEWARE-TYPE'] === 'mw/backbase-forms'
+          event['headers']['x-middleware-type'] === 'mw/backbase-forms'
         ) {
           response = { data: response };
         }

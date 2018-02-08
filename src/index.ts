@@ -4,7 +4,7 @@ import tsSimpleAst from 'ts-simple-ast';
 import * as ts from 'typescript';
 import { ENDPOINT_SYMBOL, LAMBDA_SYMBOL } from './decorators/lambda';
 
-import { fun as f, utils as u } from '@mttrbit/fun';
+import { fun as f } from '@mttrbit/fun';
 
 const destructEndpoint = ({ keys }) => endpoint => {
   const assign = key => f.tap(acc => (acc[key] = endpoint[key]));
@@ -46,7 +46,11 @@ class Serverless {
 
     this.hooks = {
       'before:package:initialize': () => {
-        return new Promise(u.wait(2000));
+        return new Promise((res, rej) => {
+          setTimeout(() => {
+            res(true);
+          }, 2000);
+        });
       },
     };
 
