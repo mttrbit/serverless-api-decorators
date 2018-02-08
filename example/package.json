@@ -4,5 +4,10 @@
         "test": "echo \"Error: no test specified\" && exit 1",
         "build": "npm link sls-api-decorators && tsc",
         "start": "sls init"
-    }
+    },
+  "dependencies": {
+    "@mttrbit/lambda-handler": "1.0.2",
+    "debug": "^2.6.8",
+    "http-errors": "^1.6.2"
+  }
 }

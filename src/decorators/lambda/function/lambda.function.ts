@@ -28,10 +28,7 @@ export type ServiceHandler = (
   callback, // AWS callback
 ) => void;
 
-const proxiedHandler = (
-  handler: ServiceHandler,
-  config: LambdaFunctionConfig,
-) =>
+const proxiedHandler = (handler: ServiceHandler) =>
   handle(handler, {
     onBefore: (event, context) => {
       context.log.info({ event }, 'processing event');
@@ -41,8 +38,25 @@ const proxiedHandler = (
       // if (!config.resolveWithFullResponse) {
       // if (result.hasOwnProperty('options')) delete result.options;
       // if (result.hasOwnProperty('response')) delete result.response;
-      // }
-      return result;
+      // }{
+      if (result.statusCode) {
+        return Object.assign(
+          {
+            statusCode: 200,
+            headers: {},
+            body: '',
+            isBase64Encoded: false,
+          },
+          result,
+        );
+      } else {
+        return {
+          statusCode: 200,
+          headers: {},
+          body: JSON.stringify(result),
+          isBase64Encoded: false,
+        };
+      }
     },
     onError: (error, event, context) => {
       context.log.error({ err: error }, 'error occurred');
@@ -90,27 +104,29 @@ export const lambdaFunction = (config: LambdaFunctionConfig) => {
 
           // TODO: need to get enviroment info
 
-          // reject(e);
-          resolve({ message: e.toString() });
+          reject(e);
+          // resolve({ message: e.toString() });
         }
       });
 
       promise.then((response: any) => {
         if (
-          event['headers'] !== undefined &&
+          event &&
+          event['headers'] &&
           event['headers']['x-middleware-type'] === 'mw/backbase-forms'
         ) {
           response = { data: response };
         }
         callback(null, response);
       });
-
       promise.catch((err: any) => {
         // same as comment above
         // cb(err);
-        callback(null, err);
+        console.log('ERROR');
+        callback(err);
+        // callback(null, err);
       });
-    }, config));
+    }));
   };
 };
 

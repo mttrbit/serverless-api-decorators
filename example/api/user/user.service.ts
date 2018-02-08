@@ -1,4 +1,6 @@
 import * as Debug from 'debug';
+import * as createError from 'http-errors';
+
 import {
   lambdaService,
   lambdaFunction,
@@ -26,28 +28,31 @@ export class UserService {
     name: 'hello',
     // sub-path for this endpoint
     // i.e.: http://localhost:8000/users/
-    path: '/',
+    path: '/hi',
     // method to which this function should listen
     // i.e.: 'get' or ['get', 'post'] [TBD]
     method: 'get',
     // this is just required from serverless-webpack plugin
-    integration: 'lambda',
+    integration: 'lambda-proxy',
   })
   public welcome(event) {
     debug('Running welcome');
 
+    throw createError.NotFound();
+    // throw new Error('ABBBCCCDDD');
+    /*
     return {
-      event,
       message:
         'Go Serverless Webpack (Typescript) v1.0! Your function executed successfully!',
     };
+    */
   }
 
   @lambdaFunction({
     name: 'list',
     path: '/',
     method: 'get',
-    integration: 'lambda',
+    integration: 'lambda-proxy',
   })
   public list(event, offset, limit) {
     debug('Running welcome');
@@ -65,7 +70,7 @@ export class UserService {
     name: 'getById',
     path: '/{id}',
     method: 'get',
-    integration: 'lambda',
+    integration: 'lambda-proxy',
   })
   public getById(id) {
     debug('Running get by id:', id);
@@ -81,7 +86,7 @@ export class UserService {
     name: 'getSubscriptions',
     path: '/{id}/subscriptions',
     method: 'get',
-    integration: 'lambda',
+    integration: 'lambda-proxy',
   })
   public getSubscriptions(id) {
     debug('Running get by id:', id);
@@ -92,7 +97,7 @@ export class UserService {
     name: 'error',
     path: 'error',
     method: 'get',
-    integration: 'lambda',
+    integration: 'lambda-proxy',
   })
   public error(event) {
     debug('throwing an error');

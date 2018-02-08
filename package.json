@@ -46,7 +46,8 @@
   "dependencies": {
     "@mttrbit/fun": "^0.0.6",
     "@mttrbit/lambda-handler": "^1.0.2",
-    "@types/aws-lambda": "0.0.14"
+    "@types/aws-lambda": "0.0.14",
+    "http-errors": "^1.6.2"
   },
   "peerDependencies": {},
   "devDependencies": {
@@ -62,6 +63,7 @@
     "npm-scripts-info": "^0.3.6",
     "nyc": "^10.0.0",
     "rimraf": "^2.6.1",
+    "serverless-offline": "^3.17.0",
     "source-map-support": "^0.5.0",
     "standard-version": "^4.2.0",
     "ts-node": "^4.0.2",
