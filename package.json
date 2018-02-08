@@ -44,7 +44,7 @@
     "release": "Clean, build, test, publish docs, and prepare release (a one-step publish process)"
   },
   "dependencies": {
-    "@mttrbit/fun": "^0.0.5",
+    "@mttrbit/fun": "^0.0.6",
     "@mttrbit/lambda-handler": "^1.0.2",
     "@types/aws-lambda": "0.0.14"
   },
