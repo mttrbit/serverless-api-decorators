@@ -69,6 +69,7 @@ describe('decorators', () => {
 
     expect(endpointsDef).to.be.eql([
       {
+        cors: true,
         functionName: 'testMethod',
         integration: 'lambda',
         method: 'get',
