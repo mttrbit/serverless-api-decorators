@@ -4,9 +4,10 @@ import { createDecoratedConfig } from './factories';
 import { handle } from '@mttrbit/lambda-handler';
 
 const getPathParam = (event, arg) => {
-  const pathParamExists = event && event.path && event.path.hasOwnProperty(arg);
-
-  return pathParamExists ? event.path[arg] : undefined;
+  // const pathParamExists = event && event.path && event.path.hasOwnProperty(arg);
+  const pathParamExists =
+    event && event.pathParameters && event.pathParameters.hasOwnProperty(arg);
+  return pathParamExists ? event.pathParameters[arg] : undefined;
 };
 
 const extractArgs = event => {
