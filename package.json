@@ -45,12 +45,12 @@
   },
   "dependencies": {
     "@mttrbit/fun": "^0.0.9",
-    "@mttrbit/lambda-handler": "^1.0.3",
-    "@types/aws-lambda": "0.0.14",
+    "@mttrbit/lambda-handler": "^1.0.4",
     "http-errors": "^1.6.2"
   },
   "peerDependencies": {},
   "devDependencies": {
+    "@types/aws-lambda": "0.0.14",
     "@types/chai": "^3.5.2",
     "@types/debug": "0.0.29",
     "@types/mocha": "^2.2.41",
