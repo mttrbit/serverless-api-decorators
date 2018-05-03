@@ -74,6 +74,7 @@ describe('decorators', () => {
         integration: 'lambda',
         method: 'get',
         name: 'test',
+        private: true,
         path: '/',
         resolveWithFullResponse: false,
       },

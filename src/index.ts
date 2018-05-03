@@ -26,7 +26,9 @@ const composeServerlessFn = (fns, service) => endpoint => {
   const handler = `dist/handler.${varName}`;
   const concatPaths = sel => path.join(service.path, sel);
   fns[varName] = f.pipe(
-    destructEndpoint({ keys: ['integration', 'path', 'method', 'cors'] }),
+    destructEndpoint({
+      keys: ['integration', 'path', 'method', 'cors', 'private'],
+    }),
     updateProperty({ key: 'path' }, concatPaths),
     createFunction(handler),
   )(endpoint);

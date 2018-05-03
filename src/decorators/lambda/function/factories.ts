@@ -12,13 +12,15 @@ export const createConfig = ({
   method,
   integration,
   resolveWithFullResponse,
+  private: true,
 });
 
 export const createDecoratedConfig = ({ config, key }): LambdaFunctionConfig => ({
   integration: config.integration || 'lambda',
   method: config.method || 'get',
   path: config.path,
-  cors: config.cors || true,
+  cors: config.cors === undefined ? true : config.cors,
+  private: config.private === undefined ? true : config.private,
   // setting real function name
   functionName: key,
   resolveWithFullResponse: config.resolveWithFullResponse || false,

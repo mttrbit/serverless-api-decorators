@@ -3,6 +3,7 @@ export interface LambdaFunctionConfig {
   integration: string;
   method: string;
   name?: string;
+  private?: boolean;
   path: string;
   [name: string]: string | boolean;
 }
