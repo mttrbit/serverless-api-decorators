@@ -6,8 +6,7 @@ import { backbasify } from '../../../utils';
 
 const getPathParam = (event, arg) => {
   // const pathParamExists = event && event.path && event.path.hasOwnProperty(arg);
-  const pathParamExists =
-    event && event.pathParameters && event.pathParameters.hasOwnProperty(arg);
+  const pathParamExists = event && event.pathParameters && event.pathParameters.hasOwnProperty(arg);
   return pathParamExists ? event.pathParameters[arg] : undefined;
 };
 
@@ -122,6 +121,8 @@ export const lambdaFunction = (config: LambdaFunctionConfig) => {
         ) {
           response = { data: backbasify(response) };
         }
+        event['headers']['Access-Control-Allow-Origin'] = '*';
+        event['headers']['Access-Control-Allow-Credentials'] = true;
         callback(null, response);
       });
       promise.catch((err: any) => {
