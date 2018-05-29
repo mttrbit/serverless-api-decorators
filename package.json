@@ -1,6 +1,6 @@
 {
   "name": "@mttrbit/sls-api-decorators",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "serveless plugin to write lambda functions in typescript making use of IoC technics to reduce coding effort",
   "license": "MIT",
   "repository": "https://github.com/mttrbit/serverless-api-decorators",
