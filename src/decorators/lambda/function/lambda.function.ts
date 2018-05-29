@@ -44,7 +44,10 @@ const proxiedHandler = (handler: ServiceHandler) =>
         return Object.assign(
           {
             statusCode: 200,
-            headers: {},
+            headers: {
+              'Access-Control-Allow-Origin': '*',
+              'Access-Control-Allow-Credentials': true,
+            },
             body: '',
             isBase64Encoded: false,
           },
@@ -53,7 +56,10 @@ const proxiedHandler = (handler: ServiceHandler) =>
       } else {
         return {
           statusCode: 200,
-          headers: {},
+          headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true,
+          },
           body:
             Object.prototype.toString.call(result) === '[object String]'
               ? result
