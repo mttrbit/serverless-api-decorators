@@ -121,8 +121,10 @@ export const lambdaFunction = (config: LambdaFunctionConfig) => {
         ) {
           response = { data: backbasify(response) };
         }
-        event['headers']['Access-Control-Allow-Origin'] = '*';
-        event['headers']['Access-Control-Allow-Credentials'] = true;
+        if (event['headers']) {
+          event['headers']['Access-Control-Allow-Origin'] = '*';
+          event['headers']['Access-Control-Allow-Credentials'] = true;
+        }
         callback(null, response);
       });
       promise.catch((err: any) => {
